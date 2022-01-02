@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flashlight Plus</string>
+    <string name="app_name">Flashlight</string>
     <string name="turn_on_and_off_light">Turn on and off light</string>
     <string name="feedback_email">kaushalvasava.app.feedback@gmail.com</string>
     <string name="sos">SOS</string>
@@ -9,6 +9,8 @@
     <string name="flash_on_at_start">Flash ON at start up</string>
     <string name="touch_sound_disable">Touch sound is disable</string>
     <string name="touch_sound_enable">Touch sound is enable</string>
+    <string name="notification_disable">Notification is disable</string>
+    <string name="notification_enable">Notification is enable</string>
     <string name="haptic_feedback_disable">Haptic feedback is disable</string>
     <string name="haptic_feedback_enable">Haptic feedback is enable</string>
     <string name="shake_to_light_enable">Shake to light ON/OFF enable</string>
@@ -19,6 +21,7 @@
     <string name="feedback">Feedback</string>
     <string name="app_version">App Version</string>
     <string name="blinking_speed">Blinking Speed : %d</string>
+    <string name="brightness_level">Brightness Level : %d</string>
     <string name="blinking_time">Blinking Time</string>
     <string name="enter_sos_number">Enter SOS Number</string>
     <string name="cancel">Cancel</string>
@@ -39,8 +42,13 @@
     <string name="phone_denied_toast">Phone state Permission denied</string>
     <string name="blinking_taost">Flash will blinking whenever call arrives</string>
     <string name="phone_call_denied_toast">Phone Permission denied</string>
-    <string name="market_string">market://search?q=Kaushal Vasava</string>
+    <string name="market_string">market://search?q=pub:Kaushal Vasava</string>
     <string name="market_developer_string">http://play.google.com/store/apps/developer?id=Kaushal Vasava</string>
     <string name="play_store_share">https://play.google.com/store/apps/details?id=</string>
+    <string name="switch_txt">Switch for screen light and flash light</string>
+    <string name="rating">Rate the app</string>
 
+    <string name="admob_banner_id">ca-app-pub-6780659711293241/5879786179</string>
+    <string name="admob_app_id">ca-app-pub-6780659711293241~3462997083</string>
+    <string name="more_options">More Options</string>
 </resources>

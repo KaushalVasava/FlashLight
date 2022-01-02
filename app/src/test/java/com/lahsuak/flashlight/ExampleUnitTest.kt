@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus
+package com.lahsuak.flashlight
 
 import org.junit.Test
 

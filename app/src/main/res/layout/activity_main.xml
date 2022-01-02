@@ -4,102 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:id="@+id/main_layout"
+    android:background="@color/blue"
     tools:context=".MainActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/torchBtn">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/playBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/turn_on_and_off_light"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:rotation="-45"
+                android:src="@drawable/ic_flashlight_off" />
+
+            <ImageButton
+                android:id="@+id/screen_flashlight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/switch_txt"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_device" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:elevation="10dp"
         app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/torchBtn">
+        app:layout_constraintTop_toBottomOf="@id/cardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/playBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_color"
-                android:padding="15dp"
-                android:hapticFeedbackEnabled="true"
-                android:contentDescription="@string/turn_on_and_off_light"
-                android:src="@drawable/ic_play"
-                app:layout_constraintBottom_toTopOf="@id/lightSlider"
-                app:layout_constraintEnd_toStartOf="@id/phoneBtn"
-                app:layout_constraintStart_toEndOf="@id/sosBtn"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <ImageButton
                 android:id="@+id/sosBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sos_background"
-                android:padding="15dp"
-                android:layout_marginStart="10dp"
-                android:hapticFeedbackEnabled="true"
                 android:contentDescription="@string/sos"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
                 android:src="@drawable/ic_sos_off"
-                app:layout_constraintBottom_toBottomOf="@id/playBtn"
-                app:layout_constraintEnd_toStartOf="@id/playBtn"
+                app:layout_constraintBottom_toTopOf="@id/lightSlider"
+                app:layout_constraintEnd_toStartOf="@id/phoneBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/playBtn" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/phoneBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/phone_background"
-                android:padding="15dp"
+                android:contentDescription="@string/incoming_call"
                 android:hapticFeedbackEnabled="true"
-                android:contentDescription = "@string/incoming_call"
+                android:padding="15dp"
                 android:src="@drawable/ic_call_off"
+                app:layout_constraintBottom_toBottomOf="@id/sosBtn"
+                app:layout_constraintEnd_toStartOf="@id/settingBtn"
+                app:layout_constraintStart_toEndOf="@id/sosBtn"
+                app:layout_constraintTop_toTopOf="@id/sosBtn" />
+
+            <ImageButton
+                android:id="@+id/settingBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/more_options"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_more"
+                app:layout_constraintBottom_toBottomOf="@id/sosBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/playBtn"
-                app:layout_constraintTop_toTopOf="@id/playBtn"
-                app:layout_constraintBottom_toBottomOf="@id/playBtn"
-                />
+                app:layout_constraintStart_toEndOf="@id/phoneBtn"
+                app:layout_constraintTop_toTopOf="@id/sosBtn" />
 
             <TextView
                 android:id="@+id/blinking_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/blinking_speed"
-                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textColor="?attr/colorOnSecondary"
-                app:layout_constraintTop_toBottomOf="@id/lightSlider"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/lightSlider"
                 app:layout_constraintEnd_toEndOf="@id/lightSlider"
-                />
+                app:layout_constraintStart_toStartOf="@id/lightSlider"
+                app:layout_constraintTop_toBottomOf="@id/lightSlider" />
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/lightSlider"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/slider_background"
+                android:contentDescription="@string/light_blinking_speed"
                 android:stepSize="10.0"
                 android:valueFrom="0.0"
-                android:valueTo="90.0"
-                android:contentDescription="@string/light_blinking_speed"
+                android:valueTo="100.0"
                 app:labelBehavior="floating"
-                app:layout_constraintTop_toBottomOf="@id/playBtn"
                 app:layout_constraintBottom_toTopOf="@id/blinking_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:thumbColor="@color/yellow"
+                app:layout_constraintTop_toBottomOf="@id/sosBtn"
+                app:thumbColor="@color/light_blue"
                 app:trackColor="@color/white" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -108,14 +152,24 @@
         android:id="@+id/torchBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FFFFFF"
+        android:background="@color/blue"
+        android:contentDescription="@string/flash_light"
         android:scaleType="centerCrop"
-        android:padding="20dp"
-        android:src="@drawable/light_bulb_off"
+        android:src="@drawable/ic_play"
         app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/flash_light" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="@string/admob_banner_id"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

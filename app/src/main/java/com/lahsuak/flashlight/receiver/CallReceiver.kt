@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.flashlight.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -14,6 +14,8 @@ import android.os.Looper
 import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.lahsuak.flashlight.service.CallService
+import com.lahsuak.flashlight.util.App.Companion.flashlightExist
 import java.io.IOException
 
 class CallReceiver : BroadcastReceiver() {
@@ -24,52 +26,37 @@ class CallReceiver : BroadcastReceiver() {
         private var onEverySecond: Runnable? = null
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent != null) {
-            if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                    .equals(TelephonyManager.EXTRA_STATE_RINGING)
-            ) {
-                switchingFlash(context!!)
-            } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                    .equals(TelephonyManager.EXTRA_STATE_OFFHOOK)
-            ) {
+    override fun onReceive(context: Context, intent: Intent) {
+        val serviceIntent = Intent(context, CallService::class.java)
 
-                turnFlash(context!!, false)
-                isPause = true
-                switchingFlash(context)
-//                    if (handler1 != null)
-//                        handler1!!.removeCallbacks(onEverySecond!!)
-            } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                    .equals(TelephonyManager.EXTRA_STATE_IDLE)
-            ) {
-                turnFlash(context!!, false)
-                isPause = true
-                switchingFlash(context)
-//                    if (handler1 != null)
-//                        handler1!!.removeCallbacks(onEverySecond!!)
-
-                //Toast.makeText(context, "call end", Toast.LENGTH_SHORT).show()
-            }
+        if (intent.action != null) {
+           if(flashlightExist) {
+               if (intent.action == "Pause") {
+                   serviceIntent.putExtra("myActionName", false)
+                   context.startService(serviceIntent)
+               } else if (intent.action == "Play") {
+                   serviceIntent.putExtra("myActionName", true)
+                   context.startService(serviceIntent)
+               }
+           }
         }
-//        val telephoneManager =
-//            context?.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-//
-//        telephoneManager.listen(object : PhoneStateListener() {
-//            override fun onCallStateChanged(state: Int, phoneNumber: String?) {
-//                super.onCallStateChanged(state, phoneNumber)
-//                //state 0 = rejected
-//                //state 1 = incoming call
-//                //state 2 = received
-//
-//                if (state == 1) {
-//                    switchingFlash(context)
-//                } else {
-//                    turnFlash(context, false)
-//                    if(handler1!=null && onEverySecond!=null)
-//                        handler1!!.removeCallbacks(onEverySecond!!)
-//                }
-//            }
-//        }, PhoneStateListener.LISTEN_CALL_STATE)
+        if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
+                .equals(TelephonyManager.EXTRA_STATE_RINGING)
+        ) {
+            switchingFlash(context)
+        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
+                .equals(TelephonyManager.EXTRA_STATE_OFFHOOK)
+        ) {
+            turnFlash(context, false)
+            isPause = true
+            switchingFlash(context)
+        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
+                .equals(TelephonyManager.EXTRA_STATE_IDLE)
+        ) {
+            turnFlash(context, false)
+            isPause = true
+            switchingFlash(context)
+        }
     }
 
     private fun switchingFlash(context: Context) {
@@ -101,15 +88,17 @@ class CallReceiver : BroadcastReceiver() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     cameraManager.setTorchMode(cameraId, isCheck)
                 } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                    val mCam = Camera.open()
+                    val mCam = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK)
                     val p: Camera.Parameters = mCam.parameters
+                    mCam!!.parameters = p
+                    //val mCam = Camera.open()
+//                    val p: Camera.Parameters = mCam.parameters
                     p.flashMode = Camera.Parameters.FLASH_MODE_TORCH
                     mCam.parameters = p
                     val mPreviewTexture = SurfaceTexture(0)
                     try {
                         mCam.setPreviewTexture(mPreviewTexture)
                     } catch (ex: IOException) {
-                        // Ignore
                     }
                     mCam.startPreview()
                 }

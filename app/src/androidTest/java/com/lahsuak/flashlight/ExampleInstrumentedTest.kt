@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus
+package com.lahsuak.flashlight
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
