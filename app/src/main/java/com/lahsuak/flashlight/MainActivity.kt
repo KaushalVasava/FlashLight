@@ -30,24 +30,13 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.IBinder
 import com.lahsuak.flashlight.databinding.FragmentSettingBinding
 
 import android.view.animation.AnimationUtils
-import android.widget.PopupMenu
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.initialization.InitializationStatus
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.play.core.appupdate.AppUpdateManager
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.InstallStateUpdatedListener
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.InstallStatus
-import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.lahsuak.flashlight.`interface`.LightListener
@@ -64,7 +53,8 @@ import com.lahsuak.flashlight.util.Util.playSound
 import com.lahsuak.flashlight.util.Util.sendFeedbackMail
 import com.lahsuak.flashlight.util.Util.shareApp
 
-class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection, LightListener {
+class MainActivity : AppCompatActivity()
+    , SensorEventListener, ServiceConnection, LightListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var settingBinding: FragmentSettingBinding
     private var mLastShakeTime: Long = 0
@@ -75,7 +65,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
 
     //in-app review and in-app update
     private lateinit var reviewManager: ReviewManager
-    private var appUpdateManager: AppUpdateManager? = null
 
     //extra
     private var job: Job? = null
@@ -107,13 +96,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
         val pref = getSharedPreferences("EXIST_FLASH", MODE_PRIVATE)
         flashlightExist = pref.getBoolean("flash_exist", true)
         reviewManager = ReviewManagerFactory.create(this)
-        appUpdateManager = AppUpdateManagerFactory.create(this)
 
-        //checking update of application
-        checkUpdate()
-        appUpdateManager!!.registerListener(appUpdateListener)
-
-        supportActionBar!!.hide()
         val myAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
         binding.playBtn.animation = myAnim
         binding.sosBtn.animation = myAnim
@@ -128,14 +111,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
         settingFragment.behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-
-        if (flashlightExist) {
-//            val intent = Intent(this, CallService::class.java)
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                this.startForegroundService(intent)
-//            } else
-//                this.startService(intent)
-        }
 
         MobileAds.initialize(this) { }
         val adRequest = AdRequest.Builder().build()
@@ -161,15 +136,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
             turnFlash(true)
         }
 
-        binding.settingBtn.setOnClickListener { v ->
+        binding.settingBtn.setOnClickListener {
             val dialogBinding = BottomsheetDialogBinding.inflate(layoutInflater)
             val bottomSheetDialog = BottomSheetDialog(this)
             bottomSheetDialog.setContentView(dialogBinding.root)
-
-//            val popupMenu = PopupMenu(this, v)
-//            popupMenu.menuInflater.inflate(R.menu.app_menu, popupMenu.menu)
-//            popupMenu.show()
-            // popupMenu.setOnMenuItemClickListener { item ->
             dialogBinding.settingText.setOnClickListener {
                 settingFragment.show()
                 bottomSheetDialog.dismiss()
@@ -193,8 +163,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
             bottomSheetDialog.show()
         }
         binding.screenFlashlight.setOnClickListener {
-            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-            binding.torchBtn.visibility = View.INVISIBLE
             //binding.lightSlider.valueTo=100.0f
             binding.blinkingLabel.text = getString(R.string.brightness_level, 0)
             binding.lightSlider.value = 0f
@@ -429,41 +397,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
         }
     }
 
-    private fun checkUpdate() {
-        // Returns an intent object that you use to check for an update.
-        val appUpdateInfoTask = appUpdateManager!!.appUpdateInfo
-
-        // Checks that the platform will allow the specified type of update.
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                // This example applies an immediate update. To apply a flexible update
-                // instead, pass in AppUpdateType.FLEXIBLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
-            ) {
-                // Request the update.
-                try {
-                    appUpdateManager!!.startUpdateFlowForResult(
-                        appUpdateInfo, AppUpdateType.FLEXIBLE,
-                        this, UPDATE_REQUEST_CODE
-                    )
-                } catch (exception: IntentSender.SendIntentException) {
-                    notifyUser(this, exception.message.toString())
-                }
-            }
-        }
-    }
-
-    private val appUpdateListener = InstallStateUpdatedListener { state ->
-        // (Optional) Provide a download progress bar.
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            Snackbar.make(binding.root, "New app is ready", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Install") {
-                    appUpdateManager!!.completeUpdate()
-                }.show()
-        }
-        // Log state or install the update.
-    }
-
     private fun showRateApp() {
         val request = reviewManager.requestReviewFlow()
         request.addOnCompleteListener { task ->
@@ -494,7 +427,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
                 READ_PHONE_STATE_REQUEST_CODE
             )
         } else {
-            notifyUser(this, getString(R.string.blinking_taost))
+            notifyUser(this, getString(R.string.blinking_toast))
             binding.phoneBtn.setImageResource(R.drawable.ic_call)
         }
     }
@@ -549,7 +482,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
         if (requestCode == READ_PHONE_STATE_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 binding.phoneBtn.setImageResource(R.drawable.ic_call)
-                notifyUser(this, getString(R.string.blinking_taost))
+                notifyUser(this, getString(R.string.blinking_toast))
             } else {
                 notifyUser(this, getString(R.string.phone_denied_toast))
             }
@@ -647,7 +580,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
         flashOnAtStartUpEnable = preference.getBoolean(FLASH_ON_START, false)
         bigFlashAsSwitchEnable = preference.getBoolean(BIG_FLASH_AS_SWITCH, false)
         shakeToLightEnable = preference.getBoolean(SHAKE_TO_LIGHT, true)
-        SHAKE_THRESHOLD = preference.getFloat(SHAKE_SENSITIVITY, 3.25f)
+        SHAKE_THRESHOLD = preference.getFloat(SHAKE_SENSITIVITY, 3.5f)
         val sosNo = preference.getString(SOS_NUMBER, null)
         settingBinding.sosNumber.setText(sosNo)
 
@@ -763,9 +696,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener, ServiceConnection
         if (!screenState) {
             screenLight(true, 0.5f)
             binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
+            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+            binding.torchBtn.visibility = View.INVISIBLE
         } else {
             screenLight(false, -1.0f)
             binding.screenFlashlight.setImageResource(R.drawable.ic_device)
+            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue))
+            binding.torchBtn.visibility = View.VISIBLE
         }
         if (isSoundEnable) {
             playSound(this)

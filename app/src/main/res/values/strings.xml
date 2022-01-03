@@ -3,8 +3,8 @@
     <string name="turn_on_and_off_light">Turn on and off light</string>
     <string name="feedback_email">kaushalvasava.app.feedback@gmail.com</string>
     <string name="sos">SOS</string>
-    <string name="big_flash_disable">Big flash as a switch is disable</string>
-    <string name="big_flash_enable">Big flash as a switch is enable</string>
+    <string name="big_flash_disable">Bulb as a switch is disable</string>
+    <string name="big_flash_enable">Bulb as a switch is enable</string>
     <string name="flash_off_at_start">Flash OFF at start up</string>
     <string name="flash_on_at_start">Flash ON at start up</string>
     <string name="touch_sound_disable">Touch sound is disable</string>
@@ -40,7 +40,7 @@
     <string name="camera_denied_toast">Camera Permission denied!,Camera permission needed for flashlight</string>
     <string name="flash_camera_toast">Flash light feature now working</string>
     <string name="phone_denied_toast">Phone state Permission denied</string>
-    <string name="blinking_taost">Flash will blinking whenever call arrives</string>
+    <string name="blinking_toast">Flash will be blinking whenever call arrives</string>
     <string name="phone_call_denied_toast">Phone Permission denied</string>
     <string name="market_string">market://search?q=pub:Kaushal Vasava</string>
     <string name="market_developer_string">http://play.google.com/store/apps/developer?id=Kaushal Vasava</string>
