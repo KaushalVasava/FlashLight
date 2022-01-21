@@ -9,6 +9,7 @@
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_bug_report.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_call.xml" value="0.19895833333333332" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_call_off.xml" value="0.1675438596491228" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_color_fill.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_device.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_device_on.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_flashlight_off.xml" value="0.19895833333333332" />
@@ -28,10 +29,12 @@
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/add_playlist_dialog.xml" value="0.15043859649122807" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/bottomsheet_dialog.xml" value="0.2" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/fragment_setting.xml" value="0.16" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/notification_layout.xml" value="0.22" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/sos_dialog.xml" value="0.22" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/menu/app_menu.xml" value="0.17864583333333334" />
-        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/xml/root_preferences.xml" value="0.16" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/xml/root_preferences.xml" value="0.15" />
       </map>
     </option>
   </component>

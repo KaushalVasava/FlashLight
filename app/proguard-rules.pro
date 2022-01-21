@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# For coroutine
+-keep class kotlinx.coroutines.**
+-keepattributes *Annotation*, Signature, Exception
+-keepnames class androidx.navigation.fragment.NavHostFragment
+-keep class * extends androidx.fragment.app.Fragment{}
+-keep class com.lahsuak.flashlight.util.ConstantsKt

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".ui.fragments.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/torchBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/torchBtn">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <ImageButton
+                android:id="@+id/playBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/turn_on_and_off_light"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:rotation="-45"
+                android:src="@drawable/ic_flashlight_off"
+                app:layout_constraintBottom_toTopOf="@id/settingBtn"
+                app:layout_constraintEnd_toStartOf="@+id/screen_flashlight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/screen_flashlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/switch_txt"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_device"
+                app:layout_constraintBottom_toBottomOf="@id/playBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/playBtn"
+                app:layout_constraintTop_toTopOf="@id/playBtn" />
+
+            <ImageButton
+                android:id="@+id/screen_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/switch_txt"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_color_fill"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/settingBtn"
+                app:layout_constraintEnd_toEndOf="@id/playBtn"
+                app:layout_constraintStart_toStartOf="@id/playBtn"
+                app:layout_constraintTop_toTopOf="@id/settingBtn" />
+
+            <ImageButton
+                android:id="@+id/sosBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sos_background"
+                android:contentDescription="@string/sos"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_sos_off"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/settingBtn"
+                app:layout_constraintEnd_toEndOf="@id/playBtn"
+                app:layout_constraintStart_toStartOf="@id/playBtn"
+                app:layout_constraintTop_toTopOf="@id/settingBtn" />
+
+            <ImageButton
+                android:id="@+id/settingBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_color"
+                android:contentDescription="@string/more_options"
+                android:hapticFeedbackEnabled="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/screen_flashlight"
+                app:layout_constraintStart_toStartOf="@id/screen_flashlight"
+                app:layout_constraintTop_toBottomOf="@id/playBtn" />
+            <!--        </LinearLayout>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/lightSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/slider_background"
+                android:contentDescription="@string/light_blinking_speed"
+                android:stepSize="10.0"
+                android:valueFrom="0.0"
+                android:valueTo="100.0"
+                app:labelBehavior="floating"
+                app:thumbColor="@color/light_blue"
+                app:trackColor="@color/white" />
+
+            <TextView
+                android:id="@+id/blinking_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blinking_speed"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/torchBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue"
+        android:contentDescription="@string/flash_light"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/banner_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

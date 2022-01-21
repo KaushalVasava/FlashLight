@@ -14,8 +14,11 @@ import android.os.Looper
 import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.lahsuak.flashlight.service.CallService
 import com.lahsuak.flashlight.util.App.Companion.flashlightExist
+import com.lahsuak.flashlight.util.CALL_NOTIFICATION
+import com.lahsuak.flashlight.util.SHOW_NOTIFICATION
 import java.io.IOException
 
 class CallReceiver : BroadcastReceiver() {
@@ -30,32 +33,42 @@ class CallReceiver : BroadcastReceiver() {
         val serviceIntent = Intent(context, CallService::class.java)
 
         if (intent.action != null) {
-           if(flashlightExist) {
-               if (intent.action == "Pause") {
-                   serviceIntent.putExtra("myActionName", false)
-                   context.startService(serviceIntent)
-               } else if (intent.action == "Play") {
-                   serviceIntent.putExtra("myActionName", true)
-                   context.startService(serviceIntent)
-               }
-           }
+            if (flashlightExist) {
+                if (intent.action == "Pause") {
+                    serviceIntent.putExtra("myActionName", false)
+                    context.startService(serviceIntent)
+                } else if (intent.action == "Play") {
+                    serviceIntent.putExtra("myActionName", true)
+                    context.startService(serviceIntent)
+                }
+            }
         }
+        val pref = PreferenceManager.getDefaultSharedPreferences(context)
+        val callNot= pref.getBoolean(CALL_NOTIFICATION, true)
+        val appNot = pref.getBoolean(SHOW_NOTIFICATION, true)
+
+        val isAllow = callNot && appNot
         if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
                 .equals(TelephonyManager.EXTRA_STATE_RINGING)
         ) {
-            switchingFlash(context)
+            if (isAllow)
+                switchingFlash(context)
         } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
                 .equals(TelephonyManager.EXTRA_STATE_OFFHOOK)
         ) {
-            turnFlash(context, false)
-            isPause = true
-            switchingFlash(context)
+            if (isAllow) {
+                turnFlash(context, false)
+                isPause = true
+                switchingFlash(context)
+            }
         } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
                 .equals(TelephonyManager.EXTRA_STATE_IDLE)
         ) {
-            turnFlash(context, false)
-            isPause = true
-            switchingFlash(context)
+            if (isAllow) {
+                turnFlash(context, false)
+                isPause = true
+                switchingFlash(context)
+            }
         }
     }
 
@@ -67,11 +80,11 @@ class CallReceiver : BroadcastReceiver() {
                 turnFlash(context, false)
             } else {
                 flashOn = !flashOn
-                handler1!!.postDelayed(onEverySecond!!, 500)
+                handler1!!.postDelayed(onEverySecond!!, 300)
                 turnFlash(context, flashOn)
             }
         }
-        handler1!!.postDelayed(onEverySecond!!, 500)
+        handler1!!.postDelayed(onEverySecond!!, 300)
     }
 
     private fun turnFlash(context: Context, isCheck: Boolean) {
