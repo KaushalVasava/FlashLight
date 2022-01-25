@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.service
+package com.lahsuak.flashlightplus.service
 
 import android.app.PendingIntent.*
 import android.app.Service
@@ -18,14 +18,14 @@ import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
-import com.lahsuak.flashlight.ui.activity.MainActivity
-import com.lahsuak.flashlight.R
-import com.lahsuak.flashlight.`interface`.LightListener
-import com.lahsuak.flashlight.receiver.CallReceiver
-import com.lahsuak.flashlight.util.*
-import com.lahsuak.flashlight.util.App.Companion.CHANNEL_ID
-import com.lahsuak.flashlight.util.FLASH_ON_START
-import com.lahsuak.flashlight.util.SETTING_DATA
+import com.lahsuak.flashlightplus.ui.activity.MainActivity
+import com.lahsuak.flashlightplus.R
+import com.lahsuak.flashlightplus.`interface`.LightListener
+import com.lahsuak.flashlightplus.receiver.CallReceiver
+import com.lahsuak.flashlightplus.util.*
+import com.lahsuak.flashlightplus.util.App.Companion.CHANNEL_ID
+import com.lahsuak.flashlightplus.util.FLASH_ON_START
+import com.lahsuak.flashlightplus.util.SETTING_DATA
 import java.io.IOException
 
 class CallService : Service() {

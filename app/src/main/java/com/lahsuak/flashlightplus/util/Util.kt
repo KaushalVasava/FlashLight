@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.util
+package com.lahsuak.flashlightplus.util
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -9,8 +9,8 @@ import android.os.Build
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.Toast
-import com.lahsuak.flashlight.BuildConfig
-import com.lahsuak.flashlight.R
+import com.lahsuak.flashlightplus.BuildConfig
+import com.lahsuak.flashlightplus.R
 
 object Util {
     var SHAKE_THRESHOLD = 32.5f

@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.util
+package com.lahsuak.flashlightplus.util
 
 internal const val SETTING_DATA = "SETTING_DATA"
 internal const val HAPTIC_FEEDBACK = "haptic_feedback"

@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.`interface`
+package com.lahsuak.flashlightplus.`interface`
 
 interface LightListener {
     fun onTorchClick(flashON: Boolean)

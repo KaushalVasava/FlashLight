@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.ui.fragments
+package com.lahsuak.flashlightplus.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -11,18 +11,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.*
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.lahsuak.flashlight.BuildConfig
-import com.lahsuak.flashlight.R
-import com.lahsuak.flashlight.ui.fragments.HomeFragment.Companion.sos_number
-import com.lahsuak.flashlight.util.SETTING_DATA
-import com.lahsuak.flashlight.util.SOS_NUMBER
-import com.lahsuak.flashlight.util.Util.appRating
-import com.lahsuak.flashlight.util.Util.moreApp
-import com.lahsuak.flashlight.util.Util.sendFeedbackMail
-import com.lahsuak.flashlight.util.Util.shareApp
+import com.lahsuak.flashlightplus.BuildConfig
+import com.lahsuak.flashlightplus.R
+import com.lahsuak.flashlightplus.ui.fragments.HomeFragment.Companion.sos_number
+import com.lahsuak.flashlightplus.util.SETTING_DATA
+import com.lahsuak.flashlightplus.util.SOS_NUMBER
+import com.lahsuak.flashlightplus.util.Util.appRating
+import com.lahsuak.flashlightplus.util.Util.moreApp
+import com.lahsuak.flashlightplus.util.Util.sendFeedbackMail
+import com.lahsuak.flashlightplus.util.Util.shareApp
 import java.util.regex.Matcher
-import com.lahsuak.flashlight.ui.activity.MainActivity
-import com.lahsuak.flashlight.util.Util.notifyUser
+import com.lahsuak.flashlightplus.ui.activity.MainActivity
+import com.lahsuak.flashlightplus.util.Util.notifyUser
 import java.util.regex.Pattern
 
 

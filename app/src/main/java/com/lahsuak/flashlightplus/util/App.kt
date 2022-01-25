@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.util
+package com.lahsuak.flashlightplus.util
 
 import android.app.Application
 import android.app.NotificationChannel

@@ -1,4 +1,4 @@
-package com.lahsuak.flashlight.receiver
+package com.lahsuak.flashlightplus.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -15,10 +15,10 @@ import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.lahsuak.flashlight.service.CallService
-import com.lahsuak.flashlight.util.App.Companion.flashlightExist
-import com.lahsuak.flashlight.util.CALL_NOTIFICATION
-import com.lahsuak.flashlight.util.SHOW_NOTIFICATION
+import com.lahsuak.flashlightplus.service.CallService
+import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
+import com.lahsuak.flashlightplus.util.CALL_NOTIFICATION
+import com.lahsuak.flashlightplus.util.SHOW_NOTIFICATION
 import java.io.IOException
 
 class CallReceiver : BroadcastReceiver() {

@@ -1,12 +1,12 @@
-package com.lahsuak.flashlight.ui.activity
+package com.lahsuak.flashlightplus.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.lahsuak.flashlight.R
-import com.lahsuak.flashlight.databinding.ActivityMainBinding
+import com.lahsuak.flashlightplus.R
+import com.lahsuak.flashlightplus.databinding.ActivityMainBinding
 
 class MainActivity :AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding

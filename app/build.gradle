@@ -9,10 +9,10 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.lahsuak.flashlight"
+        applicationId "com.lahsuak.flashlightplus"
         minSdk 21
         targetSdk 30
-        versionCode 6
+        versionCode 4
         versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
