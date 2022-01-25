@@ -28,8 +28,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
-import com.facebook.ads.AdSize
-import com.facebook.ads.AdView
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -153,7 +151,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         flashlightExist = pref.getBoolean(FLASH_EXIST, true)
 
         appUpdateManager = AppUpdateManagerFactory.create(requireContext())
-
         //checking update of application
         checkUpdate()
         appUpdateManager!!.registerListener(appUpdateListener)
@@ -180,13 +177,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         binding.torchBtn.animation = myAnim
 
         sensorManager = requireContext().getSystemService(SENSOR_SERVICE) as SensorManager
-
-        val adView = AdView(requireContext(), getString(R.string.fb_banner_id), AdSize.BANNER_HEIGHT_50)
-        // Find the Ad Container
-        binding.bannerContainer.addView(adView)
-
-        // Request an ad
-        adView.loadAd()
 
         //Shake to turn ON/OFF flashlight
         val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)

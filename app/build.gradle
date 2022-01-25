@@ -12,12 +12,12 @@ android {
         applicationId "com.lahsuak.flashlight"
         minSdk 21
         targetSdk 30
-        versionCode 5
+        versionCode 6
         versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
@@ -57,6 +57,8 @@ dependencies {
     // Play core library
     implementation "com.google.android.play:core:1.10.2"
 
-    implementation 'com.facebook.android:audience-network-sdk:6.+'
+   // implementation 'com.facebook.android:audience-network-sdk:6.+'
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
+   // implementation 'com.google.ads.mediation:facebook:6.8.0.0'
+   // implementation 'com.google.android.gms:play-services-ads:20.4.0'
 }
