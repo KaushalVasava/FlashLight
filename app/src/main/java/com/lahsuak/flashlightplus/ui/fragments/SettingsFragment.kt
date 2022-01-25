@@ -29,7 +29,6 @@ import java.util.regex.Pattern
 class SettingsFragment : PreferenceFragmentCompat() {
 
     //in-app review
-    private lateinit var reviewManager: ReviewManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,40 +36,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).supportActionBar?.show()
-        reviewManager = ReviewManagerFactory.create(requireContext())
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            backPressedDispatcher
-        )
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-
-    private val backPressedDispatcher = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            this@SettingsFragment.onBackPressed()
-        }
-    }
-
-    private fun showRateApp() {
-        val request = reviewManager.requestReviewFlow()
-        request.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val reviewInfo = task.result
-                val activity = MainActivity()
-                val flow = reviewManager.launchReviewFlow(activity, reviewInfo)
-                flow.addOnCompleteListener {
-                    //nothing to do
-                }
-            }
-        }
-    }
-
-    private fun onBackPressed() {
-        showRateApp()
-        findNavController().popBackStack()
-    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)

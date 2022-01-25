@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flashlight</string>
+    <string name="app_name">Flashlight+</string>
     <string name="turn_on_and_off_light">Turn on and off light</string>
     <string name="feedback_email">kaushalvasava.app.feedback@gmail.com</string>
     <string name="sos">SOS</string>

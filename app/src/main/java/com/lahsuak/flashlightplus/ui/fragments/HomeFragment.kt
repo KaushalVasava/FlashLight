@@ -71,7 +71,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     //extra
     private var job: Job? = null
     private var flashState = false
-    private var screenState = false // new for screen brightness
     var checkLight = true // true for flashlight and false for screen light
     private var onOrOff = false
     private var isRunning = false
@@ -87,6 +86,9 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     companion object {
         var isStartUpOn = false
         var sos_number: String? = null
+        var screenState = false // new for screen brightness
+        private var sliderValue = 0f
+        private var layoutColor = Color.WHITE
     }
 
     override fun onResume() {
@@ -97,44 +99,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         }
     }
 
-    private fun checkUpdate() {
-        val appUpdateInfoTask = appUpdateManager!!.appUpdateInfo
-
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
-            ) {
-                try {
-                    appUpdateManager!!.startUpdateFlowForResult(
-                        appUpdateInfo, AppUpdateType.FLEXIBLE,
-                        requireActivity(), UPDATE_REQUEST_CODE
-                    )
-                } catch (exception: IntentSender.SendIntentException) {
-                    notifyUser(requireContext(), exception.message.toString())
-                }
-            }
-        }
-    }
-    private val appUpdateListener = InstallStateUpdatedListener { state ->
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            Snackbar.make(requireView(), "New app is ready", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Restart") {
-                    appUpdateManager!!.completeUpdate()
-                }.show()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        @Suppress("deprecation")
-        super.onActivityResult(requestCode, resultCode, data)
-        if (data == null) return
-        if (requestCode == UPDATE_REQUEST_CODE) {
-            notifyUser(requireContext(), "Downloading start")
-            if (resultCode != Activity.RESULT_OK) {
-                notifyUser(requireActivity().applicationContext, "Update failed")
-            }
-        }
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -189,6 +153,18 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
         //Flash light fragment methods
         getAllSettings()
+        if(screenState){
+            binding.blinkingLabel.text = getString(R.string.brightness_level, 0)
+            binding.lightSlider.value = sliderValue
+            screenLight(true, sliderValue)
+            binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
+            binding.root.setBackgroundColor(layoutColor)
+
+            binding.sosBtn.visibility = View.GONE
+            binding.screenColor.setColorFilter(layoutColor)
+            binding.screenColor.visibility=View.VISIBLE
+            binding.torchBtn.visibility = View.INVISIBLE
+        }
 
         binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
         if (flashOnAtStartUpEnable) {
@@ -286,6 +262,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                             getString(R.string.brightness_level, slider.value.toInt())
                         screenLight(true, slider.value / 100)
                         binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
+                        sliderValue = slider.value/100
                     }
                 }
             })
@@ -436,6 +413,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         } else
             screenState = false
         layout.screenBrightness = screenLight
+
         requireActivity().window.attributes = layout
     }
 
@@ -491,6 +469,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             .setOnColorChangedListener { color ->
                 binding.root.setBackgroundColor(color)
                 binding.screenColor.setColorFilter(color)
+                layoutColor = color
             }
             .setNegativeButton(
                 "OK"
@@ -530,6 +509,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         bigFlashAsSwitchEnable = prefSetting.getBoolean(BIG_FLASH_AS_SWITCH, false)
         shakeToLightEnable = prefSetting.getBoolean(SHAKE_TO_LIGHT, true)
         isCallNotificationEnable = prefSetting.getBoolean(CALL_NOTIFICATION, true)
+
         val pref = requireContext().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
         sos_number = pref.getString(SOS_NUMBER, null)
 
@@ -666,6 +646,45 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     override fun onServiceDisconnected(name: ComponentName) {
         if (flashlightExist)
             service = null
+    }
+
+    private fun checkUpdate() {
+        val appUpdateInfoTask = appUpdateManager!!.appUpdateInfo
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
+            ) {
+                try {
+                    appUpdateManager!!.startUpdateFlowForResult(
+                        appUpdateInfo, AppUpdateType.FLEXIBLE,
+                        requireActivity(), UPDATE_REQUEST_CODE
+                    )
+                } catch (exception: IntentSender.SendIntentException) {
+                    notifyUser(requireContext(), exception.message.toString())
+                }
+            }
+        }
+    }
+    private val appUpdateListener = InstallStateUpdatedListener { state ->
+        if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            Snackbar.make(requireView(), "New app is ready", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Restart") {
+                    appUpdateManager!!.completeUpdate()
+                }.show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        @Suppress("deprecation")
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data == null) return
+        if (requestCode == UPDATE_REQUEST_CODE) {
+            notifyUser(requireContext(), "Downloading start")
+            if (resultCode != Activity.RESULT_OK) {
+                notifyUser(requireActivity().applicationContext, "Update failed")
+            }
+        }
     }
 
 }
