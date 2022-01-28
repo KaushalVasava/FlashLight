@@ -23,6 +23,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +44,7 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import com.lahsuak.flashlightplus.R
 import com.lahsuak.flashlightplus.`interface`.LightListener
 import com.lahsuak.flashlightplus.databinding.FragmentHomeBinding
+import com.lahsuak.flashlightplus.databinding.SosDialogBinding
 import com.lahsuak.flashlightplus.service.CallService
 import com.lahsuak.flashlightplus.util.*
 import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
@@ -148,15 +150,12 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-            checkCameraPermission()
-
         //Flash light fragment methods
         getAllSettings()
         if(screenState){
-            binding.blinkingLabel.text = getString(R.string.brightness_level, 0)
+            binding.blinkingLabel.text = getString(R.string.brightness_level, sliderValue.toInt()/10)
             binding.lightSlider.value = sliderValue
-            screenLight(true, sliderValue)
+            screenLight(true, sliderValue/100)
             binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
             binding.root.setBackgroundColor(layoutColor)
 
@@ -165,22 +164,28 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             binding.screenColor.visibility=View.VISIBLE
             binding.torchBtn.visibility = View.INVISIBLE
         }
-
-        binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
+        else {
+            binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
+            binding.lightSlider.value = 0f
+            screenState= false
+            checkLight = true
+        }
         if (flashOnAtStartUpEnable) {
             turnFlash(true)
             isStartUpOn = true
         }
         binding.screenFlashlight.setOnClickListener {
-            binding.blinkingLabel.text = getString(R.string.brightness_level, 0)
-            binding.lightSlider.value = 0f
+            binding.blinkingLabel.text = getString(R.string.brightness_level, 5)
+            binding.lightSlider.value = 50f
             binding.screenFlashlight.animation = myAnim
+            sliderValue = 50f
             it.startAnimation(myAnim)
             screenClick()
         }
         binding.screenColor.setOnClickListener {
             showColorDialog()
         }
+
         binding.sosBtn.setOnClickListener {
             it.startAnimation(myAnim)
             checkCallPermission()
@@ -191,6 +196,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                 hapticFeedback(binding.sosBtn)
             }
         }
+
         binding.torchBtn.setOnClickListener {
             if (bigFlashAsSwitchEnable) {
                 it.startAnimation(myAnim)
@@ -201,6 +207,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
             findNavController().navigate(action)
         }
+
         binding.playBtn.setOnClickListener {
             binding.root.setBackgroundColor(
                 ContextCompat.getColor(
@@ -259,10 +266,10 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                         }
                     } else {
                         binding.blinkingLabel.text =
-                            getString(R.string.brightness_level, slider.value.toInt())
+                            getString(R.string.brightness_level, slider.value.toInt()/10)
                         screenLight(true, slider.value / 100)
                         binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
-                        sliderValue = slider.value/100
+                        sliderValue = slider.value
                     }
                 }
             })
@@ -316,14 +323,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             }
         }
     }
-    private val cameraPermissionsResultCallback = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) {
-        if(!it) {
-            notifyUser(requireContext(), "Please give camera permission for flashlight")
-        }
-    }
-
     private fun bothPermission() {
         val array = arrayOf(
             Manifest.permission.READ_PHONE_STATE,
@@ -335,17 +334,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         )
         if (permission != PackageManager.PERMISSION_GRANTED) {
             bothPermissionsResultCallback.launch(array)
-        }
-    }
-
-    private fun checkCameraPermission() {
-        val array = Manifest.permission.CAMERA
-        val permission = ContextCompat.checkSelfPermission(
-            requireContext(),
-            array
-        )
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            cameraPermissionsResultCallback.launch(array)
         }
     }
 
@@ -368,41 +356,32 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     }
 
     private fun showSOSDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.sos_dialog)
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCancelable(false)
+        val sosBinding = SosDialogBinding.inflate(layoutInflater)
+        val builder = MaterialAlertDialogBuilder(requireContext())
 
-        val sosNumber = dialog.findViewById<TextInputEditText>(R.id.sos_number)
-        val save = dialog.findViewById<Button>(R.id.saveBtn)
-        val cancel = dialog.findViewById<Button>(R.id.cancelBtn)
+        builder.setView(sosBinding.root)
+            .setTitle("SOS Number")
+            .setPositiveButton(getString(R.string.save)) { dialog, _ ->
+                val preference = requireActivity().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
+                sos_number = preference.getString(SOS_NUMBER, null)
 
-        save.setOnClickListener {
-            val preference = requireActivity().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
-            sos_number = preference.getString(SOS_NUMBER, null)
-
-            if (!sosNumber.text.isNullOrEmpty() &&
-                sosNumber.text.toString().length == 10
-            ) {
-                if (sos_number != sosNumber.text.toString()) {
-                    notifyUser(requireContext(), "Contact is successfully added")
-                    bothPermission()
-                    binding.sosBtn.setImageResource(R.drawable.ic_sos)
-                    sos_number = sosNumber.text.toString()
+                if (!sosBinding.sosNumber.text.isNullOrEmpty() &&
+                    sosBinding.sosNumber.text.toString().length == 10
+                ) {
+                    if (sos_number != sosBinding.sosNumber.text.toString()) {
+                        notifyUser(requireContext(), "Contact is successfully added")
+                        bothPermission()
+                        binding.sosBtn.setImageResource(R.drawable.ic_sos)
+                        sos_number = sosBinding.sosNumber.text.toString()
+                    }
+                    saveSetting()
+                    dialog.dismiss()
+                } else {
+                    notifyUser(requireContext(), "Please enter SOS Number!")
                 }
-                saveSetting()
-            } else {
-                notifyUser(requireContext(), "Please enter SOS Number!")
             }
-            dialog.dismiss()
-        }
-        cancel.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialog.show()
+            .setNegativeButton(getString(R.string.cancel),null)
+            .show()
     }
 
     //screen light methods
@@ -601,6 +580,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             binding.screenColor.setColorFilter(Color.WHITE)
             binding.screenColor.visibility=View.VISIBLE
             binding.torchBtn.visibility = View.INVISIBLE
+            layoutColor = Color.WHITE
         } else {
             screenLight(false, -1.0f)
             binding.screenFlashlight.setImageResource(R.drawable.ic_device)

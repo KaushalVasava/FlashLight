@@ -21,7 +21,6 @@
     <string name="flash_light">Flash Light</string>
     <string name="shake_sensitivity">Shake sensitivity</string>
     <string name="big_lamp">Big bulb as a switch</string>
-    <string name="fb_banner_id">421209369743042_421210433076269</string>
     <string name="shake_to_light">Shake to wake</string>
     <string name="sos_toast">Please enter valid phone number!</string>
     <string name="camera_denied_toast">Camera Permission denied!,Camera permission needed for flashlight</string>
@@ -46,8 +45,6 @@
     <string name="developer_name">Kaushal Vasava</string>
     <string name="about">About</string>
     <string name="current_version">Current version</string>
-    <string name="admob_banner_id">ca-app-pub-6780659711293241/5879786179</string>
-    <string name="admob_app_id">ca-app-pub-6780659711293241~3462997083</string>
     <string name="more_options">More Options</string>
     <string name="more">More</string>
     <string name="save">Save</string>

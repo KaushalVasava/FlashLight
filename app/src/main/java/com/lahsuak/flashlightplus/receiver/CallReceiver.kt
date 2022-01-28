@@ -4,11 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.SurfaceTexture
-import android.hardware.Camera
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
@@ -19,7 +16,6 @@ import com.lahsuak.flashlightplus.service.CallService
 import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
 import com.lahsuak.flashlightplus.util.CALL_NOTIFICATION
 import com.lahsuak.flashlightplus.util.SHOW_NOTIFICATION
-import java.io.IOException
 
 class CallReceiver : BroadcastReceiver() {
     private var handler1: Handler? = Handler(Looper.getMainLooper())
@@ -44,7 +40,7 @@ class CallReceiver : BroadcastReceiver() {
             }
         }
         val pref = PreferenceManager.getDefaultSharedPreferences(context)
-        val callNot= pref.getBoolean(CALL_NOTIFICATION, true)
+        val callNot = pref.getBoolean(CALL_NOTIFICATION, true)
         val appNot = pref.getBoolean(SHOW_NOTIFICATION, true)
 
         val isAllow = callNot && appNot
@@ -98,23 +94,7 @@ class CallReceiver : BroadcastReceiver() {
                 context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
             try {
                 val cameraId = cameraManager.cameraIdList[0]
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    cameraManager.setTorchMode(cameraId, isCheck)
-                } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                    val mCam = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK)
-                    val p: Camera.Parameters = mCam.parameters
-                    mCam!!.parameters = p
-                    //val mCam = Camera.open()
-//                    val p: Camera.Parameters = mCam.parameters
-                    p.flashMode = Camera.Parameters.FLASH_MODE_TORCH
-                    mCam.parameters = p
-                    val mPreviewTexture = SurfaceTexture(0)
-                    try {
-                        mCam.setPreviewTexture(mPreviewTexture)
-                    } catch (ex: IOException) {
-                    }
-                    mCam.startPreview()
-                }
+                cameraManager.setTorchMode(cameraId, isCheck)
             } catch (e: CameraAccessException) {
             }
         }
