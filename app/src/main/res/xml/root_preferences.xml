@@ -27,6 +27,13 @@
     <PreferenceCategory
         app:iconSpaceReserved="false"
         app:title="@string/special_feature">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="false"
+            app:key="sos_call"
+            app:summaryOff="@string/disable"
+            app:summaryOn="@string/enable"
+            app:title="@string/sos_call" />
         <EditTextPreference
             android:title="SOS Number"
             app:key="sos_number"

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">フラッシュライト+ </string>
+    <string name="turn_on_and_off_light">ライトのオンとオフを切り替える</string>
+    <string name="sos"> SOS </string>
+    <string name="ok"> OK </string>
+    <string name="settings">設定</string>
+    <string name="more_apps">その他のアプリ</string>
+    <string name="share_app">このアプリを共有する</string>
+    <string name="feedback">フィードバック</string>
+    <string name="app_version">アプリのバージョン</string>
+    <string name="blinking_speed">点滅速度：％d </string>
+    <string name="brightness_level">明るさレベル：％d </string>
+    <string name="blinking_time">点滅時間</string>
+    <string name="enter_sos_number"> SOS番号を入力</string>
+    <string name="cancel">キャンセル</string>
+    <string name="done">完了</string>
+    <string name="sensitivity">シェイク感度：％。2f </string>
+    <string name="incoming_call">着信フラッシュライト</string>
+    <string name="light_blinking_speed">フラッシュライトの点滅速度</string>
+    <string name="flash_light">フラッシュライト</string>
+    <string name="shake_sensitivity">シェイク感度</string>
+    <string name="big_lamp">スイッチとしての大きな電球</string>
+    <string name="shake_to_light">シェイクしてウェイクアップ</string>
+    <string name="sos_toast">有効な電話番号を入力してください！</string>
+    <string name="camera_denied_toast">カメラの許可が拒否されました！、懐中電灯に必要なカメラの許可</string>
+    <string name="flash_camera_toast">フラッシュライト機能が機能するようになりました</string>
+    <string name="phone_denied_toast">電話の状態許可が拒否されました</string>
+    <string name="blinking_toast">電話がかかってくるたびにフラッシュが点滅します</string>
+    <string name="phone_call_denied_toast">電話の許可が拒否されました</string>
+    <string name="switch_txt">スクリーンライトとフラッシュライトの切り替え</string>
+
+    <string name="contact_support">サポートに連絡する</string>
+    <string name="rating">アプリを評価する</string>
+    <string name="playback_speed" translatable="false">％。2fx </string>
+    <string name="tap_gesture">画像を左に2回タップすると、10秒遅れ、右を2回タップすると、10秒前に進みます</string>
+    <string name="feedback_text">アプリがクラッシュし続ける場合は、フィードバックを送信する\'アプリデータを消去する\'またはメールを送信する</string>
+    <string name="rating_text">このアプリが好きですか？ GooglePlayストアでさらに改善する方法を教えてください</string>
+    <string name="more_app_text">他のアプリをチェックする</string>
+    <string name="share_text">アプリを友達や家族と共有する</string>
+    <string name="developer">開発者</string>
+    <string name="developer_name"> Kaushal Vasava </string>
+    <string name="about">概要</string>
+    <string name="current_version">現在のバージョン</string>
+    <string name="more_options">その他のオプション</string>
+    <string name="more">その他</string>
+    <string name="save">保存</string>
+    <string name="enable">有効</string>
+    <string name="disable">無効にする</string>
+    <string name="sound_vibration">音と振動</string>
+    <string name="special_feature">特別な機能</string>
+    <string name="notification">通知</string>
+    <string name="incoming_notification">着信通知</string>
+    <string name="app_notification">アプリの通知</string>
+    <string name="touch_sound">​​タッチサウンド</string>
+    <string name="haptic_feedback">触覚フィードバック</string>
+    <string name="turn_on_startup">起動時にオンにする</string>
+    <string name="allow_perm">許可を許可する</string>
+    <string name="permission_desc">状態の読み取りを許可し、着信通知とSOS機能の通話を許可してください。</string>
+    <string name="sos_call">通話付きのSOS </string>
+</resources>

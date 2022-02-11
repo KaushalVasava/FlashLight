@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ফ্ল্যাশলাইট+</string>
+    <string name="turn_on_and_off_light">লাইট চালু এবং বন্ধ করুন</string>
+    <string name="sos">SOS</string>৷
+    <string name="ok">ঠিক আছে</string>৷
+    <string name="settings">সেটিংস</string>
+    <string name="more_apps">আরো অ্যাপ</string>
+    <string name="share_app">এই অ্যাপটি শেয়ার করুন</string>৷
+    <string name="feedback">প্রতিক্রিয়া</string>
+    <string name="app_version">অ্যাপ সংস্করণ</string>
+    <string name="blinking_speed">ব্লিঙ্কিং স্পিড : %d</string>
+    <string name="brightness_level">উজ্জ্বলতা স্তর : %d</string>
+    <string name="blinking_time">ব্লিঙ্কিং টাইম</string>
+    <string name="enter_sos_number">SOS নম্বর লিখুন</string>
+    <string name="cancel">বাতিল করুন</string>৷
+    <string name = "done"> সম্পন্ন</string>৷
+    <string name="sensitivity">শেক সংবেদনশীলতা : %.2f</string>
+    <string name = "incoming_call">আগত কল ফ্ল্যাশ লাইট</string>
+    <string name = "light_blinking_speed">ফ্ল্যাশ লাইট ব্লিঙ্কিং গতি</string>
+    <string name = "flash_light">ফ্ল্যাশ লাইট</string>
+    <string name="shake_sensitivity">শেক সংবেদনশীলতা</string>
+    <string name = "big_lamp"> একটি সুইচ হিসাবে বড় বাল্ব</string>
+    <string name="shake_to_light">জাগানোর জন্য ঝাঁকান</string>
+    <string name="sos_toast">অনুগ্রহ করে বৈধ ফোন নম্বর লিখুন!</string>
+    <string name="camera_denied_toast">ক্যামেরার অনুমতি অস্বীকার করা হয়েছে!,ফ্ল্যাশলাইটের জন্য ক্যামেরার অনুমতি প্রয়োজন</string>
+    <string name="flash_camera_toast">ফ্ল্যাশ লাইট বৈশিষ্ট্য এখন কাজ করছে</string>
+    <string name="phone_denied_toast">ফোন স্টেট অনুমতি অস্বীকৃত</string>৷
+    <string name = "blinking_toast"> যখনই কল আসবে তখনই ফ্ল্যাশ জ্বলে উঠবে</string>
+    <string name="phone_call_denied_toast">ফোনের অনুমতি অস্বীকার করা হয়েছে</string>
+    <string name="switch_txt">স্ক্রিন লাইট এবং ফ্ল্যাশ লাইটের জন্য স্যুইচ করুন</string>
+
+    <string name = "contact_support"> সহায়তার সাথে যোগাযোগ করুন</string>
+    <string name="rating">অ্যাপকে রেট দিন</string>
+    <string name="playback_speed" translatable="false">%.2fx</string>
+    <string name="tap_gesture">10 সেকেন্ডের পিছনে যেতে চিত্রের বাম দিকে 2 বার আলতো চাপুন এবং 10 সেকেন্ডে এগিয়ে যেতে চিত্রের ডানদিকে 2 বার আলতো চাপুন </string>
+    <string name="feedback_text">প্রতিক্রিয়া পাঠান, যদি অ্যাপ ক্র্যাশ হতে থাকে \'অ্যাপ ডেটা সাফ করুন\' বা এটিকে একটি ইমেল পাঠান</string>
+    <string name="rating_text">এই অ্যাপটি পছন্দ করেন? Google Play Store-এ আমাদের জানান কিভাবে আমরা এটিকে আরও ভালো করতে পারি</string>
+    <string name="more_app_text">অন্যান্য অ্যাপগুলি দেখুন</string>৷
+    <string name="share_text">আপনার বন্ধু এবং পরিবারের সাথে অ্যাপটি শেয়ার করুন</string>৷
+    <string name="developer">বিকাশকারী</string>
+    <string name = "developer_name"> কৌশল ভাসাভা</string>
+    <string name = "about"> সম্বন্ধে</string>
+    <string name="current_version">বর্তমান সংস্করণ</string>
+    <string name="more_options">আরো বিকল্প</string>
+    <string name="more">আরো</string>
+    <string name="save">সংরক্ষণ করুন</string>৷
+    <string name="enable">সক্রিয় করুন</string>
+    <string name="disable">অক্ষম করুন</string>
+    <string name = "sound_vibration"> শব্দ এবং কম্পন</string>
+    <string name="special_feature">বিশেষ বৈশিষ্ট্য</string>
+    <string name="notification">বিজ্ঞপ্তি</string>
+    <string name="incoming_notification">আগত কল বিজ্ঞপ্তি</string>
+    <string name="app_notification">অ্যাপের বিজ্ঞপ্তি</string>
+    <string name = "touch_sound"> ​​স্পর্শ শব্দ</string>
+    <string name = "haptic_feedback">হ্যাপটিক প্রতিক্রিয়া</string>
+    <string name="turn_on_startup">স্টার্টআপে চালু করুন</string>
+    <string name="allow_perm">অনুমতি দিন</string>
+    <string name="permission_desc">দয়া করে পড়ার অবস্থার অনুমতি দিন এবং ইনকামিং কল বিজ্ঞপ্তি এবং SOS বৈশিষ্ট্যের জন্য ফোন কলের অনুমতি দিন৷</string>
+    <string name="sos_call">কল সহ SOS</string>৷
+</resources>

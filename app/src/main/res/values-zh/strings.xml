@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">手电筒+</string>
+    <string name="turn_on_and_off_light">开关灯</string>
+    <string name="sos">SOS</string>
+    <string name="ok">确定</string>
+    <string name="settings">设置</string>
+    <string name="more_apps">更多应用</string>
+    <string name="share_app">分享这个应用</string>
+    <string name="feedback">反馈</string>
+    <string name="app_version">应用版本</string>
+    <string name="blinking_speed">闪烁速度：%d</string>
+    <string name="brightness_level">亮度等级：%d</string>
+    <string name="blinking_time">闪烁时间</string>
+    <string name="enter_sos_number">输入SOS号码</string>
+    <string name="cancel">取消</string>
+    <string name="done">完成</string>
+    <string name="sensitivity">抖动敏感度：%.2f</string>
+    <string name="incoming_call">来电闪光灯</string>
+    <string name="light_blinking_speed">闪光灯闪烁速度</string>
+    <string name="flash_light">闪光灯</string>
+    <string name="shake_sensitivity">震动敏感度</string>
+    <string name="big_lamp">大灯泡作为开关</string>
+    <string name="shake_to_light">摇晃唤醒</string>
+    <string name="sos_toast">请输入有效的电话号码！</string>
+    <string name="camera_denied_toast">相机权限被拒绝！,手电筒需要相机权限</string>
+    <string name="flash_camera_toast">闪光灯功能现在可以使用</string>
+    <string name="phone_denied_toast">电话状态权限被拒绝</string>
+    <string name="blinking_toast">来电时Flash会闪烁</string>
+    <string name="phone_call_denied_toast">电话权限被拒绝</string>
+    <string name="switch_txt">屏幕灯和闪光灯切换</string>
+
+    <string name="contact_support">联系支持</string>
+    <string name="rating">给应用评分</string>
+    <string name="playback_speed" translatable="false">%.2fx</string>
+    <string name="tap_gesture">点击图片左侧2次后退10秒，点击右侧2次图片前进10秒</string>
+    <string name="feedback_text">发送反馈，如果应用不断崩溃\'Clear app data\'或发送电子邮件</string>
+    <string name="rating_text">喜欢这个应用吗？在 Google Play 商店中告诉我们如何让它变得更好</string>
+    <string name="more_app_text">查看其他应用</string>
+    <string name="share_text">与您的朋友和家人分享应用程序</string>
+    <string name="developer">开发者</string>
+    <string name="developer_name">Kaushal Vasava</string>
+    <string name="about">关于</string>
+    <string name="current_version">当前版本</string>
+    <string name="more_options">更多选项</string>
+    <string name="more">更多</string>
+    <string name="save">保存</string>
+    <string name="enable">启用</string>
+    <string name="disable">禁用</string>
+    <string name="sound_vibration">声音和振动</string>
+    <string name="special_feature">特殊功能</string>
+    <string name="notification">通知</string>
+    <string name="incoming_notification">来电通知</string>
+    <string name="app_notification">应用通知</string>
+    <string name="touch_sound">​​触摸声音</string>
+    <string name="haptic_feedback">触觉反馈</string>
+    <string name="turn_on_startup">启动时开启</string>
+    <string name="allow_perm">允许权限</string>
+    <string name="permission_desc">来电通知和SOS功能请允许读取状态和拨打电话权限。</string>
+    <string name="sos_call">带电话的SOS</string>
+</resources>

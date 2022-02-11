@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Linterna+</string>
+    <string name="turn_on_and_off_light">Enciende y apaga la luz</string>
+    <string name="sos">SOS</string>
+    <string name="ok">OK</string>
+    <string name="settings">Configuración</string>
+    <string name="more_apps">Más aplicaciones</string>
+    <string name="share_app">Comparte esta aplicación</string>
+    <string name="feedback">Comentarios</string>
+    <string name="app_version">Versión de la aplicación</string>
+    <string name="blinking_speed">Velocidad de parpadeo: %d</string>
+    <string name="brightness_level">Nivel de brillo: %d</string>
+    <string name="blinking_time">Tiempo de parpadeo</string>
+    <string name="enter_sos_number">Ingrese el número SOS</string>
+    <string name="cancel">Cancelar</string>
+    <string name="done">Listo</string>
+    <string name="sensitivity">Sensibilidad de agitación: %.2f</string>
+    <string name="incoming_call">Luz intermitente de llamada entrante</string>
+    <string name="light_blinking_speed">Velocidad de parpadeo de la luz del flash</string>
+    <string name="flash_light">Luz de destello</string>
+    <string name="shake_sensitivity">Sensibilidad de agitación</string>
+    <string name="big_lamp">Bombilla grande como interruptor</string>
+    <string name="shake_to_light">Agitar para despertar</string>
+    <string name="sos_toast">¡Por favor ingrese un número de teléfono válido!</string>
+    <string name="camera_denied_toast">¡Permiso de cámara denegado!,Permiso de cámara necesario para linterna</string>
+    <string name="flash_camera_toast">Función de luz de flash ahora funcionando</string>
+    <string name="phone_denied_toast">Estado del teléfono Permiso denegado</string>
+    <string name="blinking_toast">Flash parpadeará cada vez que llegue una llamada</string>
+    <string name="phone_call_denied_toast">Permiso telefónico denegado</string>
+    <string name="switch_txt">Interruptor para luz de pantalla y luz de flash</string>
+
+    <string name="contact_support">Contactar con soporte</string>
+    <string name="rating">Califica la aplicación</string>
+    <string name="playback_speed" traducible="false">%.2fx</string>
+    <string name="tap_gesture">Tocando a la izquierda 2 veces en la imagen para retroceder a 10 segundos y tocando a la derecha 2 veces en la imagen para avanzar a 10 segundos</string>
+    <string name="feedback_text">Envíe comentarios, si la aplicación sigue fallando \'Borrar datos de la aplicación\' o envíe un correo electrónico</string>
+    <string name="rating_text">¿Te encanta esta aplicación? Háganos saber en Google Play Store cómo podemos hacerlo aún mejor</string>
+    <string name="more_app_text">Mira otras aplicaciones</string>
+    <string name="share_text">Comparte la aplicación con tus amigos y familiares</string>
+    <string name="developer">Desarrollador</string>
+    <string name="developer_name">Kaushal Vasava</string>
+    <string name="about">Acerca de</string>
+    <string name="current_version">Versión actual</string>
+    <string name="more_options">Más opciones</string>
+    <string name="more">Más</string>
+    <string name="save">Guardar</string>
+    <string name="enable">habilitar</string>
+    <string name="disable">deshabilitar</string>
+    <string name="sound_vibration">Sonido y Vibración</string>
+    <string name="special_feature">Características especiales</string>
+    <string name="notification">Notificación</string>
+    <string name="incoming_notification">Notificación de llamada entrante</string>
+    <string name="app_notification">Notificación de aplicación</string>
+    <string name="touch_sound">Sonido táctil</string>
+    <string name="haptic_feedback">Retroalimentación háptica</string>
+    <string name="turn_on_startup">Activar al inicio</string>
+    <string name="allow_perm">Permitir permiso</string>
+    <string name="permission_desc">Permita leer el estado y hacer llamadas telefónicas para la notificación de llamadas entrantes y la función SOS.</string>
+    <string name="sos_call">SOS con llamada</string>
+</resources>

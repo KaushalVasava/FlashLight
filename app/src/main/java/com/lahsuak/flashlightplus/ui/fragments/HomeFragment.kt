@@ -2,7 +2,6 @@ package com.lahsuak.flashlightplus.ui.fragments
 
 import android.Manifest
 import android.app.Activity
-import android.app.Dialog
 import android.content.ComponentName
 import android.content.Context.*
 import android.content.Intent
@@ -20,10 +19,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +31,6 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
@@ -46,11 +42,21 @@ import com.lahsuak.flashlightplus.`interface`.LightListener
 import com.lahsuak.flashlightplus.databinding.FragmentHomeBinding
 import com.lahsuak.flashlightplus.databinding.SosDialogBinding
 import com.lahsuak.flashlightplus.service.CallService
-import com.lahsuak.flashlightplus.util.*
 import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
-import com.lahsuak.flashlightplus.util.MIN_TIME_BETWEEN_SHAKES_MILLIsECS
-import com.lahsuak.flashlightplus.util.SETTING_DATA
-import com.lahsuak.flashlightplus.util.SOS_NUMBER
+import com.lahsuak.flashlightplus.util.Constants.BIG_FLASH_AS_SWITCH
+import com.lahsuak.flashlightplus.util.Constants.CALL_NOTIFICATION
+import com.lahsuak.flashlightplus.util.Constants.FLASH_EXIST
+import com.lahsuak.flashlightplus.util.Constants.FLASH_ON_START
+import com.lahsuak.flashlightplus.util.Constants.HAPTIC_FEEDBACK
+import com.lahsuak.flashlightplus.util.Constants.MIN_TIME_BETWEEN_SHAKES_MILLIsECS
+import com.lahsuak.flashlightplus.util.Constants.SETTING_DATA
+import com.lahsuak.flashlightplus.util.Constants.SHAKE_SENSITIVITY
+import com.lahsuak.flashlightplus.util.Constants.SHAKE_TO_LIGHT
+import com.lahsuak.flashlightplus.util.Constants.SHOW_NOTIFICATION
+import com.lahsuak.flashlightplus.util.Constants.SOS_NUMBER
+import com.lahsuak.flashlightplus.util.Constants.TEL
+import com.lahsuak.flashlightplus.util.Constants.TOUCH_SOUND
+import com.lahsuak.flashlightplus.util.Constants.UPDATE_REQUEST_CODE
 import com.lahsuak.flashlightplus.util.Util.SHAKE_THRESHOLD
 import com.lahsuak.flashlightplus.util.Util.hapticFeedback
 import com.lahsuak.flashlightplus.util.Util.notifyUser
@@ -152,22 +158,22 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
         //Flash light fragment methods
         getAllSettings()
-        if(screenState){
-            binding.blinkingLabel.text = getString(R.string.brightness_level, sliderValue.toInt()/10)
+        if (screenState) {
+            binding.blinkingLabel.text =
+                getString(R.string.brightness_level, sliderValue.toInt() / 10)
             binding.lightSlider.value = sliderValue
-            screenLight(true, sliderValue/100)
+            screenLight(true, sliderValue / 100)
             binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
             binding.root.setBackgroundColor(layoutColor)
 
             binding.sosBtn.visibility = View.GONE
             binding.screenColor.setColorFilter(layoutColor)
-            binding.screenColor.visibility=View.VISIBLE
+            binding.screenColor.visibility = View.VISIBLE
             binding.torchBtn.visibility = View.INVISIBLE
-        }
-        else {
+        } else {
             binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
             binding.lightSlider.value = 0f
-            screenState= false
+            screenState = false
             checkLight = true
         }
         if (flashOnAtStartUpEnable) {
@@ -187,6 +193,10 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         }
 
         binding.sosBtn.setOnClickListener {
+            if (job != null) {
+                job!!.cancel()
+                turnFlash(false)
+            }
             it.startAnimation(myAnim)
             checkCallPermission()
             if (isSoundEnable) {
@@ -215,8 +225,8 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                     R.color.blue
                 )
             )
-            binding.screenColor.visibility=View.GONE
-            binding.sosBtn.visibility= View.VISIBLE
+            binding.screenColor.visibility = View.GONE
+            binding.sosBtn.visibility = View.VISIBLE
             binding.torchBtn.visibility = View.VISIBLE
             binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
             binding.lightSlider.value = 0f
@@ -266,7 +276,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                         }
                     } else {
                         binding.blinkingLabel.text =
-                            getString(R.string.brightness_level, slider.value.toInt()/10)
+                            getString(R.string.brightness_level, slider.value.toInt() / 10)
                         screenLight(true, slider.value / 100)
                         binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
                         sliderValue = slider.value
@@ -323,6 +333,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             }
         }
     }
+
     private fun bothPermission() {
         val array = arrayOf(
             Manifest.permission.READ_PHONE_STATE,
@@ -380,7 +391,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                     notifyUser(requireContext(), "Please enter SOS Number!")
                 }
             }
-            .setNegativeButton(getString(R.string.cancel),null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 
@@ -420,6 +431,32 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         }
     }
 
+    private fun sosFlash() {
+        isRunning = true
+        onOrOff = false
+        var flashOn = true
+        binding.playBtn.setImageResource(R.drawable.ic_flashlight_on)
+        turnFlash(flashOn)
+
+        job = lifecycleScope.launch {
+            for (count in 1 until 10000) {
+                flashOn = !flashOn
+                delay(300)
+                if (count % 6 == 0) {
+                    delay(2000)
+                }
+                turnFlash(flashOn)
+
+                //check whether user pause the timer or not
+                if (onOrOff) {
+                    turnFlash(false)
+                    onOrOff = false
+                    break
+                }
+            }
+        }
+    }
+
     private fun turnFlash(isCheck: Boolean) {
         if (flashlightExist && service != null) {
             if (isNotificationEnable)
@@ -438,7 +475,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         }
     }
 
-    private fun showColorDialog(){
+    private fun showColorDialog() {
         ColorPickerDialogBuilder
             .with(requireContext())
             .setTitle("Screen Colors")
@@ -452,10 +489,11 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             }
             .setNegativeButton(
                 "OK"
-            ){ _, _ -> }
+            ) { _, _ -> }
             .build()
             .show()
     }
+
     private fun startFlash() {
         if (isSoundEnable) {
             playSound(requireContext())
@@ -480,7 +518,8 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
     private fun getAllSettings() {
         val prefSetting = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        SHAKE_THRESHOLD = (prefSetting.getInt(SHAKE_SENSITIVITY, (SHAKE_THRESHOLD*10f).toInt()).toFloat()/10f)
+        SHAKE_THRESHOLD =
+            (prefSetting.getInt(SHAKE_SENSITIVITY, (SHAKE_THRESHOLD * 10f).toInt()).toFloat() / 10f)
         isNotificationEnable = prefSetting.getBoolean(SHOW_NOTIFICATION, true)
         isHapticFeedBackEnable = prefSetting.getBoolean(HAPTIC_FEEDBACK, true)
         isSoundEnable = prefSetting.getBoolean(TOUCH_SOUND, false)
@@ -516,10 +555,14 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             notifyUser(requireContext(), getString(R.string.sos_toast))
         } else {
             binding.sosBtn.setImageResource(R.drawable.ic_sos)
-            switchingFlash(10)
-            val callIntent = Intent(Intent.ACTION_CALL)
-            callIntent.data = Uri.parse("tel: $phNo1")
-            startActivity(callIntent)
+            sosFlash()
+            val prefManager = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            val allowed = prefManager.getBoolean("sos_call", false)
+            if (allowed) {
+                val callIntent = Intent(Intent.ACTION_CALL)
+                callIntent.data = Uri.parse(TEL +"$phNo1")
+                startActivity(callIntent)
+            }
         }
     }
 
@@ -560,8 +603,6 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
     //callback method
     override fun onTorchClick(flashON: Boolean) {
-        // screenState =screenON
-        //   if(isStartUpOn)
         turnFlash(flashON)
     }
 
@@ -578,7 +619,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             )
             binding.sosBtn.visibility = View.GONE
             binding.screenColor.setColorFilter(Color.WHITE)
-            binding.screenColor.visibility=View.VISIBLE
+            binding.screenColor.visibility = View.VISIBLE
             binding.torchBtn.visibility = View.INVISIBLE
             layoutColor = Color.WHITE
         } else {
@@ -646,6 +687,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             }
         }
     }
+
     private val appUpdateListener = InstallStateUpdatedListener { state ->
         if (state.installStatus() == InstallStatus.DOWNLOADED) {
             Snackbar.make(requireView(), "New app is ready", Snackbar.LENGTH_INDEFINITE)

@@ -21,8 +21,9 @@ import com.lahsuak.flashlightplus.`interface`.LightListener
 import com.lahsuak.flashlightplus.receiver.CallReceiver
 import com.lahsuak.flashlightplus.util.*
 import com.lahsuak.flashlightplus.util.App.Companion.CHANNEL_ID
-import com.lahsuak.flashlightplus.util.FLASH_ON_START
-import com.lahsuak.flashlightplus.util.SETTING_DATA
+import com.lahsuak.flashlightplus.util.Constants.FLASH_EXIST
+import com.lahsuak.flashlightplus.util.Constants.FLASH_ON_START
+import com.lahsuak.flashlightplus.util.Constants.SETTING_DATA
 
 class CallService : Service() {
     private var isTorchOn = false

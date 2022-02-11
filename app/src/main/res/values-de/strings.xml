@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Taschenlampe+</string>
+    <string name="turn_on_and_off_light">Licht ein- und ausschalten</string>
+    <string name="sos">SOS</string>
+    <string name="ok">OK</string>
+    <string name="settings">Einstellungen</string>
+    <string name="more_apps">Weitere Apps</string>
+    <string name="share_app">Diese App teilen</string>
+    <string name="feedback">Feedback</string>
+    <string name="app_version">App-Version</string>
+    <string name="blinking_speed">Blinkgeschwindigkeit: %d</string>
+    <string name="brightness_level">Helligkeitsstufe: %d</string>
+    <string name="blinking_time">Blinkzeit</string>
+    <string name="enter_sos_number">SOS-Nummer eingeben</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="done">Fertig</string>
+    <string name="sensitivity">Schüttelempfindlichkeit: %.2f</string>
+    <string name="incoming_call">Blinklicht für eingehende Anrufe</string>
+    <string name="light_blinking_speed">Blitzlicht-Blinkgeschwindigkeit</string>
+    <string name="flash_light">Blitzlicht</string>
+    <string name="shake_sensitivity">Schüttelempfindlichkeit</string>
+    <string name="big_lamp">Große Glühbirne als Schalter</string>
+    <string name="shake_to_light">Zum Aufwachen schütteln</string>
+    <string name="sos_toast">Bitte gültige Telefonnummer eingeben!</string>
+    <string name="camera_denied_toast">Kameraberechtigung verweigert!,Kameraberechtigung für Taschenlampe erforderlich</string>
+    <string name="flash_camera_toast">Blitzlichtfunktion funktioniert jetzt</string>
+    <string name="phone_denied_toast">Telefonstatus Berechtigung verweigert</string>
+    <string name="blinking_toast">Flash wird blinken, wenn ein Anruf ankommt</string>
+    <string name="phone_call_denied_toast">Telefonberechtigung verweigert</string>
+    <string name="switch_txt">Schalter für Bildschirmbeleuchtung und Blitzlicht</string>
+
+    <string name="contact_support">Support kontaktieren</string>
+    <string name="rating">App bewerten</string>
+    <string name="playback_speed" translateable="false">%.2fx</string>
+    <string name="tap_gesture">2-mal links auf das Bild tippen, um 10 Sekunden zurückzugehen, und 2-mal rechts auf das Bild tippen, um 10 Sekunden vorzugehen </string>
+    <string name="feedback_text">Sende Feedback, wenn die App immer wieder abstürzt \'App-Daten löschen\' oder sende ihr eine E-Mail</string>
+    <string name="rating_text">Gefällt Ihnen diese App? Teilen Sie uns im Google Play Store mit, wie wir es noch besser machen können</string>
+    <string name="more_app_text">Schauen Sie sich andere Apps an</string>
+    <string name="share_text">Teile die App mit deinen Freunden und deiner Familie</string>
+    <string name="developer">Entwickler</string>
+    <string name="developer_name">Kaushal Vasava</string>
+    <string name="about">Über</string>
+    <string name="current_version">Aktuelle Version</string>
+    <string name="more_options">Weitere Optionen</string>
+    <string name="more">Mehr</string>
+    <string name="save">Speichern</string>
+    <string name="enable">aktivieren</string>
+    <string name="disable">deaktivieren</string>
+    <string name="sound_vibration">Ton und Vibration</string>
+    <string name="special_feature">Besonderheiten</string>
+    <string name="notification">Benachrichtigung</string>
+    <string name="incoming_notification">Benachrichtigung über eingehende Anrufe</string>
+    <string name="app_notification">App-Benachrichtigung</string>
+    <string name="touch_sound">Ton bei Berührung</string>
+    <string name="haptic_feedback">Haptisches Feedback</string>
+    <string name="turn_on_startup">Beim Start einschalten</string>
+    <string name="allow_perm">Berechtigung zulassen</string>
+    <string name="permission_desc">Bitte erlauben Sie den Lesestatus und erteilen Sie die Berechtigung für Telefonanrufe für die Benachrichtigung über eingehende Anrufe und die SOS-Funktion.</string>
+    <string name="sos_call">SOS mit Anruf</string>
+</resources>

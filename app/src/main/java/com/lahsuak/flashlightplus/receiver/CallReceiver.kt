@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.lahsuak.flashlightplus.service.CallService
 import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
-import com.lahsuak.flashlightplus.util.CALL_NOTIFICATION
-import com.lahsuak.flashlightplus.util.SHOW_NOTIFICATION
+import com.lahsuak.flashlightplus.util.Constants.CALL_NOTIFICATION
+import com.lahsuak.flashlightplus.util.Constants.SHOW_NOTIFICATION
 
 class CallReceiver : BroadcastReceiver() {
     private var handler1: Handler? = Handler(Looper.getMainLooper())
