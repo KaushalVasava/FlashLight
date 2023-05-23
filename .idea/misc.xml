@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -12,6 +11,7 @@
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_color_fill.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_device.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_device_on.xml" value="0.1675438596491228" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_flashlight.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_flashlight_off.xml" value="0.19895833333333332" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_flashlight_on.xml" value="0.19895833333333332" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.19895833333333332" />
@@ -22,6 +22,7 @@
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_play_off.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_settings.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_share.xml" value="0.1675438596491228" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_sos.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/ic_star.xml" value="0.1675438596491228" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/phone_background.xml" value="0.19895833333333332" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/drawable/slider_background.xml" value="0.1675438596491228" />
@@ -34,11 +35,12 @@
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/notification_layout.xml" value="0.22" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/layout/sos_dialog.xml" value="0.22" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/menu/app_menu.xml" value="0.17864583333333334" />
+        <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/xml/network_security_config.xml" value="0.15043859649122807" />
         <entry key="..\:/Projects/Android Projects/FlashLightPlus/app/src/main/res/xml/root_preferences.xml" value="0.15" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

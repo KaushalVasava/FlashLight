@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Flashlight</string>
+    <string name="app_name">Flashlight+</string>
     <string name="turn_on_and_off_light">Turn on and off light</string>
-    <string name="feedback_email">kaushalvasava.app.feedback@gmail.com</string>
+    <string name="feedback_email" translatable="false">kaushalvasava.app.feedback@gmail.com</string>
     <string name="sos">SOS</string>
     <string name="ok">OK</string>
     <string name="settings">Settings</string>
@@ -21,7 +21,6 @@
     <string name="flash_light">Flash Light</string>
     <string name="shake_sensitivity">Shake sensitivity</string>
     <string name="big_lamp">Big bulb as a switch</string>
-    <string name="fb_banner_id">421209369743042_421210433076269</string>
     <string name="shake_to_light">Shake to wake</string>
     <string name="sos_toast">Please enter valid phone number!</string>
     <string name="camera_denied_toast">Camera Permission denied!,Camera permission needed for flashlight</string>
@@ -29,14 +28,14 @@
     <string name="phone_denied_toast">Phone state Permission denied</string>
     <string name="blinking_toast">Flash will be blinking whenever call arrives</string>
     <string name="phone_call_denied_toast">Phone Permission denied</string>
-    <string name="market_string">market://search?q=pub:Kaushal Vasava</string>
-    <string name="market_developer_string">http://play.google.com/store/apps/developer?id=Kaushal Vasava</string>
-    <string name="play_store_share">https://play.google.com/store/apps/details?id=</string>
+    <string name="market_string" translatable="false">market://search?q=pub:Kaushal Vasava</string>
+    <string name="market_developer_string" translatable="false">http://play.google.com/store/apps/developer?id=Kaushal Vasava</string>
+    <string name="play_store_share" translatable="false">https://play.google.com/store/apps/details?id=</string>
     <string name="switch_txt">Switch for screen light and flash light</string>
 
     <string name="contact_support">Contact Support</string>
     <string name="rating">Rate the app</string>
-    <string name="playback_speed">%.2fx</string>
+    <string name="playback_speed" translatable="false">%.2fx</string>
     <string name="tap_gesture">Tapping on the left 2 times on the image to go behind to 10 seconds and tapping on the right 2 times on the image to go forward to 10 seconds </string>
     <string name="feedback_text">Send feedback, If the app keeps crashing \'Clear app data\' or send it an Email</string>
     <string name="rating_text">Love this app? Let us know in Google Play Store how we can make it even better</string>
@@ -46,8 +45,6 @@
     <string name="developer_name">Kaushal Vasava</string>
     <string name="about">About</string>
     <string name="current_version">Current version</string>
-    <string name="admob_banner_id">ca-app-pub-6780659711293241/5879786179</string>
-    <string name="admob_app_id">ca-app-pub-6780659711293241~3462997083</string>
     <string name="more_options">More Options</string>
     <string name="more">More</string>
     <string name="save">Save</string>
@@ -63,4 +60,22 @@
     <string name="turn_on_startup">Turn on at startup</string>
     <string name="allow_perm">Allow permission</string>
     <string name="permission_desc">Please allow read state and make phone call permission for incoming call notification and SOS feature.</string>
+    <string name="sos_call">SOS with call</string>
+    <string name="no_application_found">Application not found</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="share_this_app">Share this FlashLightApp</string>
+    <string name="please_write_suggestions">Please write your suggestions or issues</string>
+    <string name="feedback_from_flashlight">Feedback from FlashLight, %s</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="open_settings">Open settings</string>
+    <string name="device_doesn_t_support_flash_light">Your device doesn\'t support flash light</string>
+    <string name="sos_number">SOS Number</string>
+    <string name="contact_is_successfully_added">Contact is successfully added</string>
+    <string name="please_enter_sos_number">Please enter SOS Number!</string>
+    <string name="screen_colors">Screen Colors</string>
+    <string name="downloading_start">Downloading start</string>
+    <string name="update_failed">Update failed</string>
+    <string name="restart">Restart</string>
+    <string name="new_app_is_ready">New app is ready</string>
+    <string name="user_cancelled_the_operation">User cancelled the operation</string>
 </resources>

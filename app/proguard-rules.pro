@@ -25,4 +25,4 @@
 -keepattributes *Annotation*, Signature, Exception
 -keepnames class androidx.navigation.fragment.NavHostFragment
 -keep class * extends androidx.fragment.app.Fragment{}
--keep class com.lahsuak.flashlight.util.ConstantsKt
+-keep class com.lahsuak.flashlightplus.util.AppConstants
