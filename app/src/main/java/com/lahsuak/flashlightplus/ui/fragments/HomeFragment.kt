@@ -20,6 +20,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -42,25 +43,27 @@ import com.lahsuak.flashlightplus.`interface`.LightListener
 import com.lahsuak.flashlightplus.databinding.FragmentHomeBinding
 import com.lahsuak.flashlightplus.databinding.SosDialogBinding
 import com.lahsuak.flashlightplus.service.CallService
-import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
-import com.lahsuak.flashlightplus.util.Constants.BIG_FLASH_AS_SWITCH
-import com.lahsuak.flashlightplus.util.Constants.CALL_NOTIFICATION
-import com.lahsuak.flashlightplus.util.Constants.FLASH_EXIST
-import com.lahsuak.flashlightplus.util.Constants.FLASH_ON_START
-import com.lahsuak.flashlightplus.util.Constants.HAPTIC_FEEDBACK
-import com.lahsuak.flashlightplus.util.Constants.MIN_TIME_BETWEEN_SHAKES_MILLIsECS
-import com.lahsuak.flashlightplus.util.Constants.SETTING_DATA
-import com.lahsuak.flashlightplus.util.Constants.SHAKE_SENSITIVITY
-import com.lahsuak.flashlightplus.util.Constants.SHAKE_TO_LIGHT
-import com.lahsuak.flashlightplus.util.Constants.SHOW_NOTIFICATION
-import com.lahsuak.flashlightplus.util.Constants.SOS_NUMBER
-import com.lahsuak.flashlightplus.util.Constants.TEL
-import com.lahsuak.flashlightplus.util.Constants.TOUCH_SOUND
-import com.lahsuak.flashlightplus.util.Constants.UPDATE_REQUEST_CODE
-import com.lahsuak.flashlightplus.util.Util.SHAKE_THRESHOLD
+import com.lahsuak.flashlightplus.util.FlashLightApp.Companion.flashlightExist
+import com.lahsuak.flashlightplus.util.AppConstants.BIG_FLASH_AS_SWITCH
+import com.lahsuak.flashlightplus.util.AppConstants.CALL_NOTIFICATION
+import com.lahsuak.flashlightplus.util.AppConstants.FLASH_EXIST
+import com.lahsuak.flashlightplus.util.AppConstants.FLASH_ON_START
+import com.lahsuak.flashlightplus.util.AppConstants.HAPTIC_FEEDBACK
+import com.lahsuak.flashlightplus.util.AppConstants.MIN_TIME_BETWEEN_SHAKES_MILLIsECS
+import com.lahsuak.flashlightplus.util.AppConstants.SETTING_DATA
+import com.lahsuak.flashlightplus.util.AppConstants.SHAKE_SENSITIVITY
+import com.lahsuak.flashlightplus.util.AppConstants.SHAKE_TO_LIGHT
+import com.lahsuak.flashlightplus.util.AppConstants.SHOW_NOTIFICATION
+import com.lahsuak.flashlightplus.util.AppConstants.TEL
+import com.lahsuak.flashlightplus.util.AppConstants.TOUCH_SOUND
+import com.lahsuak.flashlightplus.util.AppConstants.UPDATE_REQUEST_CODE
+import com.lahsuak.flashlightplus.util.PermissionUtil
+import com.lahsuak.flashlightplus.util.SharedPrefConstants
+import com.lahsuak.flashlightplus.util.SharedPrefConstants.SOS_NUMBER_KEY
+import com.lahsuak.flashlightplus.util.Util.ShakeThreshold
 import com.lahsuak.flashlightplus.util.Util.hapticFeedback
-import com.lahsuak.flashlightplus.util.Util.notifyUser
 import com.lahsuak.flashlightplus.util.Util.playSound
+import com.lahsuak.flashlightplus.util.toast
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -88,12 +91,44 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     private var isSoundEnable = false
     private var flashOnAtStartUpEnable = false
     private var bigFlashAsSwitchEnable = false
-    private var shakeToLightEnable = true
+    private var shakeToLightEnable = false
     private var appUpdateManager: AppUpdateManager? = null
+
+    private val permissionResultLauncher: ActivityResultLauncher<Array<String>> =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            if (permissions.all { it.value }) {
+                /* no-op */
+            } else {
+                context.toast {
+                    getString(R.string.user_cancelled_the_operation)
+                }
+            }
+        }
+
+    private fun checkPermission() {
+        if (Build.VERSION_CODES.TIRAMISU <= Build.VERSION.SDK_INT) {
+            PermissionUtil.checkAndLaunchPermission(
+                fragment = this,
+                permissions = arrayOf(
+                    Manifest.permission.POST_NOTIFICATIONS
+                ),
+                permissionLauncher = permissionResultLauncher,
+                showRationaleUi = {
+                    PermissionUtil.showSettingsSnackBar(
+                        requireActivity(),
+                        requireView(),
+                    )
+                },
+                lazyBlock = {},
+            )
+        }
+    }
 
     companion object {
         var isStartUpOn = false
-        var sos_number: String? = null
+        var sosNumber: String? = null
         var screenState = false // new for screen brightness
         private var sliderValue = 0f
         private var layoutColor = Color.WHITE
@@ -118,7 +153,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-
+        checkPermission()
         val pref = requireContext().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
         flashlightExist = pref.getBoolean(FLASH_EXIST, true)
 
@@ -128,7 +163,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         appUpdateManager!!.registerListener(appUpdateListener)
 
         val prefNew = requireContext().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
-        val firstTime = prefNew.getBoolean("first_time", false)
+        val firstTime = prefNew.getBoolean(SharedPrefConstants.FIRST_TIME_USE_KEY, false)
         if (!firstTime) {
             val builder = MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.allow_perm))
@@ -136,7 +171,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                 .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                     //checkBothPermissions()
                     bothPermission()
-                    prefNew.edit().putBoolean("first_time", true).apply()
+                    prefNew.edit().putBoolean(SharedPrefConstants.FIRST_TIME_USE_KEY, true).apply()
                     dialog.dismiss()
                 }
             val dialogShow = builder.create()
@@ -160,7 +195,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         getAllSettings()
         if (screenState) {
             binding.blinkingLabel.text =
-                getString(R.string.brightness_level, sliderValue.toInt() / 10)
+                String.format(getString(R.string.brightness_level), sliderValue.toInt() / 10)
             binding.lightSlider.value = sliderValue
             screenLight(true, sliderValue / 100)
             binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
@@ -171,7 +206,8 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             binding.screenColor.visibility = View.VISIBLE
             binding.torchBtn.visibility = View.INVISIBLE
         } else {
-            binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
+            binding.blinkingLabel.text =
+                String.format(getString(R.string.blinking_speed), 0)
             binding.lightSlider.value = 0f
             screenState = false
             checkLight = true
@@ -181,7 +217,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             isStartUpOn = true
         }
         binding.screenFlashlight.setOnClickListener {
-            binding.blinkingLabel.text = getString(R.string.brightness_level, 5)
+            binding.blinkingLabel.text = String.format(getString(R.string.brightness_level), 5)
             binding.lightSlider.value = 50f
             binding.screenFlashlight.animation = myAnim
             sliderValue = 50f
@@ -228,7 +264,8 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
             binding.screenColor.visibility = View.GONE
             binding.sosBtn.visibility = View.VISIBLE
             binding.torchBtn.visibility = View.VISIBLE
-            binding.blinkingLabel.text = getString(R.string.blinking_speed, 0)
+            binding.blinkingLabel.text =
+                String.format(getString(R.string.blinking_speed), 0)
             binding.lightSlider.value = 0f
             checkLight = true
             val layout = requireActivity().window.attributes
@@ -255,7 +292,9 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                     }
                     if (checkLight) {
                         binding.blinkingLabel.text =
-                            getString(R.string.blinking_speed, slider.value.roundToInt() / 10)
+                            String.format(
+                                getString(R.string.blinking_speed), slider.value.roundToInt() / 10
+                            )
                         if (isRunning) {
                             lifecycleScope.launch {
                                 onOrOff = true
@@ -276,7 +315,10 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                         }
                     } else {
                         binding.blinkingLabel.text =
-                            getString(R.string.brightness_level, slider.value.toInt() / 10)
+                            String.format(
+                                getString(R.string.brightness_level),
+                                slider.value.toInt() / 10
+                            )
                         screenLight(true, slider.value / 100)
                         binding.screenFlashlight.setImageResource(R.drawable.ic_device_on)
                         sliderValue = slider.value
@@ -297,15 +339,11 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         var permissionGranted = false
         permissions.entries.forEach {
             val isGranted = it.value
-            if (isGranted) {
-                permissionGranted = true
-            } else {
-                permissionGranted = false
-            }
+            permissionGranted = isGranted
         }
         if (permissionGranted) {
             val preference = requireActivity().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
-            val sosNo = preference.getString(SOS_NUMBER, null)
+            val sosNo = preference.getString(SOS_NUMBER_KEY, null)
             if (sosNo != null) {
                 binding.sosBtn.setImageResource(R.drawable.ic_sos)
             } else {
@@ -318,12 +356,13 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     ) {
         when (it) {
             true -> {
-                if (sos_number == null)
+                if (sosNumber == null)
                     showSOSDialog()
                 else
                     binding.sosBtn.setImageResource(R.drawable.ic_sos)
                 phoneCall()
             }
+
             false -> {
                 Toast.makeText(
                     requireContext(),
@@ -358,7 +397,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         if (permission != PackageManager.PERMISSION_GRANTED) {
             callPermissionsResultCallback.launch(array)
         } else {
-            if (sos_number == null)
+            if (sosNumber == null)
                 showSOSDialog()
             else
                 binding.sosBtn.setImageResource(R.drawable.ic_sos)
@@ -371,24 +410,24 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         val builder = MaterialAlertDialogBuilder(requireContext())
 
         builder.setView(sosBinding.root)
-            .setTitle("SOS Number")
+            .setTitle(getString(R.string.sos_number))
             .setPositiveButton(getString(R.string.save)) { dialog, _ ->
                 val preference = requireActivity().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
-                sos_number = preference.getString(SOS_NUMBER, null)
+                sosNumber = preference.getString(SOS_NUMBER_KEY, null)
 
                 if (!sosBinding.sosNumber.text.isNullOrEmpty() &&
                     sosBinding.sosNumber.text.toString().length == 10
                 ) {
-                    if (sos_number != sosBinding.sosNumber.text.toString()) {
-                        notifyUser(requireContext(), "Contact is successfully added")
+                    if (sosNumber != sosBinding.sosNumber.text.toString()) {
+                        context.toast { getString(R.string.contact_is_successfully_added) }
                         bothPermission()
                         binding.sosBtn.setImageResource(R.drawable.ic_sos)
-                        sos_number = sosBinding.sosNumber.text.toString()
+                        sosNumber = sosBinding.sosNumber.text.toString()
                     }
                     saveSetting()
                     dialog.dismiss()
                 } else {
-                    notifyUser(requireContext(), "Please enter SOS Number!")
+                    context.toast { getString(R.string.please_enter_sos_number) }
                 }
             }
             .setNegativeButton(getString(R.string.cancel), null)
@@ -398,10 +437,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     //screen light methods
     private fun screenLight(screenON: Boolean, screenLight: Float) {
         val layout = requireActivity().window.attributes
-        if (screenON) {
-            screenState = true
-        } else
-            screenState = false
+        screenState = screenON
         layout.screenBrightness = screenLight
 
         requireActivity().window.attributes = layout
@@ -478,7 +514,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     private fun showColorDialog() {
         ColorPickerDialogBuilder
             .with(requireContext())
-            .setTitle("Screen Colors")
+            .setTitle(getString(R.string.screen_colors))
             .initialColor(Color.WHITE)
             .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
             .density(12)
@@ -488,7 +524,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                 layoutColor = color
             }
             .setNegativeButton(
-                "OK"
+                getString(R.string.ok)
             ) { _, _ -> }
             .build()
             .show()
@@ -518,8 +554,8 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
     private fun getAllSettings() {
         val prefSetting = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        SHAKE_THRESHOLD =
-            (prefSetting.getInt(SHAKE_SENSITIVITY, (SHAKE_THRESHOLD * 10f).toInt()).toFloat() / 10f)
+        ShakeThreshold =
+            (prefSetting.getInt(SHAKE_SENSITIVITY, (ShakeThreshold * 10f).toInt()).toFloat() / 10f)
         isNotificationEnable = prefSetting.getBoolean(SHOW_NOTIFICATION, true)
         isHapticFeedBackEnable = prefSetting.getBoolean(HAPTIC_FEEDBACK, true)
         isSoundEnable = prefSetting.getBoolean(TOUCH_SOUND, false)
@@ -529,7 +565,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
         isCallNotificationEnable = prefSetting.getBoolean(CALL_NOTIFICATION, true)
 
         val pref = requireContext().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
-        sos_number = pref.getString(SOS_NUMBER, null)
+        sosNumber = pref.getString(SOS_NUMBER_KEY, null)
 
         if (!isNotificationEnable) {
             if (service != null) {
@@ -550,17 +586,19 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
     private fun phoneCall() {
         val pref = requireActivity().getSharedPreferences(SETTING_DATA, MODE_PRIVATE)
-        val phNo1 = pref.getString(SOS_NUMBER, null)
+        val phNo1 = pref.getString(SOS_NUMBER_KEY, null)
         if (phNo1.isNullOrEmpty()) {
-            notifyUser(requireContext(), getString(R.string.sos_toast))
+            context.toast {
+                getString(R.string.sos_toast)
+            }
         } else {
             binding.sosBtn.setImageResource(R.drawable.ic_sos)
             sosFlash()
             val prefManager = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            val allowed = prefManager.getBoolean("sos_call", false)
+            val allowed = prefManager.getBoolean(SharedPrefConstants.SOS_CALL_KEY, false)
             if (allowed) {
                 val callIntent = Intent(Intent.ACTION_CALL)
-                callIntent.data = Uri.parse(TEL +"$phNo1")
+                callIntent.data = Uri.parse(TEL + "$phNo1")
                 startActivity(callIntent)
             }
         }
@@ -569,8 +607,8 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
     //save app settings
     private fun saveSetting() {
         val editor = requireActivity().getSharedPreferences(SETTING_DATA, MODE_PRIVATE).edit()
-        editor.putString(SOS_NUMBER, sos_number)
-        editor.putFloat(SHAKE_SENSITIVITY, SHAKE_THRESHOLD)
+        editor.putString(SOS_NUMBER_KEY, sosNumber)
+        editor.putFloat(SHAKE_SENSITIVITY, ShakeThreshold)
         editor.apply()
     }
 
@@ -585,7 +623,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                     val acceleration =
                         sqrt(x.pow(2) + y.pow(2) + z.pow(2)) - SensorManager.GRAVITY_EARTH
                     if (shakeToLightEnable) {
-                        if (acceleration > SHAKE_THRESHOLD) {
+                        if (acceleration > ShakeThreshold) {
                             mLastShakeTime = curTime
                             if (flashState)
                                 turnFlash(false)
@@ -682,7 +720,7 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
                         requireActivity(), UPDATE_REQUEST_CODE
                     )
                 } catch (exception: IntentSender.SendIntentException) {
-                    notifyUser(requireContext(), exception.message.toString())
+                    context.toast { exception.message.toString() }
                 }
             }
         }
@@ -690,23 +728,29 @@ class HomeFragment : Fragment(), SensorEventListener, ServiceConnection, LightLi
 
     private val appUpdateListener = InstallStateUpdatedListener { state ->
         if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            Snackbar.make(requireView(), "New app is ready", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Restart") {
-                    appUpdateManager!!.completeUpdate()
+            Snackbar.make(
+                requireView(),
+                getString(R.string.new_app_is_ready),
+                Snackbar.LENGTH_INDEFINITE
+            )
+                .setAction(getString(R.string.restart)) {
+                    appUpdateManager?.completeUpdate()
                 }.show()
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         @Suppress("deprecation")
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null) return
         if (requestCode == UPDATE_REQUEST_CODE) {
-            notifyUser(requireContext(), "Downloading start")
+            context.toast {
+                getString(R.string.downloading_start)
+            }
             if (resultCode != Activity.RESULT_OK) {
-                notifyUser(requireActivity().applicationContext, "Update failed")
+                context.toast { getString(R.string.update_failed) }
             }
         }
     }
-
 }

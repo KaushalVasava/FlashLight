@@ -58,4 +58,21 @@
     <string name="allow_perm">अनुमति दें</string>
     <string name="permission_desc">कृपया पढ़ने की स्थिति की अनुमति दें और इनकमिंग कॉल सूचना और SOS सुविधा के लिए फ़ोन कॉल की अनुमति दें।</string>
     <string name="sos_call">कॉल के साथ SOS</string>
+    <string name="no_application_found">आवेदन नहीं मिला</string>
+    <string name="something_went_wrong">कुछ गलत हो गया!</string>
+    <string name="share_this_app">इस FlashLightApp को साझा करें</string>
+    <string name="please_write_suggestions">कृपया अपने सुझाव या मुद्दे लिखें</string>
+    <string name="feedback_from_flashlight">FlashLight से प्रतिक्रिया, %s</string>
+    <string name="permission_denied">अनुमति अस्वीकृत</string>
+    <string name="open_settings">सेटिंग खोलें</string>
+    <string name="device_doesn_t_support_flash_light">आपका डिवाइस फ्लैश लाइट का समर्थन नहीं करता है</string>
+    <string name="sos_number">SOS नंबर</string>
+    <string name="contact_is_successfully_added">संपर्क सफलतापूर्वक जोड़ा गया</string>
+    <string name="please_enter_sos_number">कृपया SOS नंबर दर्ज करें!</string>
+    <string name="screen_colors">स्क्रीन के रंग</string>
+    <string name="downloading_start">डाउनलोडिंग शुरू हो रही है</string>
+    <string name="update_failed">अपडेट विफल</string>
+    <string name="restart">पुनरारंभ करें</string>
+    <string name="new_app_is_ready">नया ऐप तैयार है</string>
+    <string name="user_cancelled_the_operation">उपयोगकर्ता ने कार्रवाई रद्द कर दी</string>
 </resources>

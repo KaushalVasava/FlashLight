@@ -58,4 +58,21 @@
     <string name="allow_perm">允许权限</string>
     <string name="permission_desc">来电通知和SOS功能请允许读取状态和拨打电话权限。</string>
     <string name="sos_call">带电话的SOS</string>
+    <string name="no_application_found">未找到应用</string>
+    <string name="something_went_wrong">出了点问题！</string>
+    <string name="share_this_app">分享这个 FlashLightApp</string>
+    <string name="please_write_suggestions">请写下您的建议或问题</string>
+    <string name="feedback_from_flashlight">来自手电筒的反馈，%s</string>
+    <string name="permission_denied">权限被拒绝</string>
+    <string name="open_settings">打开设置</string>
+    <string name="device_doesn_t_support_flash_light">您的设备不支持闪光灯</string>
+    <string name="sos_number">SOS 号码</string>
+    <string name="contact_is_successfully_added">联系人添加成功</string>
+    <string name="please_enter_sos_number">请输入求救号码！</string>
+    <string name="screen_colors">屏幕颜色</string>
+    <string name="downloading_start">开始下载</string>
+    <string name="update_failed">更新失败</string>
+    <string name="restart">重启</string>
+    <string name="new_app_is_ready">新应用准备就绪</string>
+    <string name="user_cancelled_the_operation">用户取消了操作</string>
 </resources>

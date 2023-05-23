@@ -58,4 +58,21 @@
     <string name="allow_perm">許可を許可する</string>
     <string name="permission_desc">状態の読み取りを許可し、着信通知とSOS機能の通話を許可してください。</string>
     <string name="sos_call">通話付きのSOS </string>
+    <string name="no_application_found">アプリケーションが見つかりません</string>
+    <string name="something_went_wrong">何か問題が発生しました!</string>
+    <string name="share_this_app">この FlashLightApp を共有する</string>
+    <string name="please_write_suggestions">ご提案や問題点をお書きください</string>
+    <string name="feedback_from_flashlight">フラッシュライトからのフィードバック、%s</string>
+    <string name="permission_denied">権限が拒否されました</string>
+    <string name="open_settings">設定を開く</string>
+    <string name="device_doesn_t_support_flash_light">お使いのデバイスはフラッシュ ライトをサポートしていません</string>
+    <string name="sos_number">SOS 番号</string>
+    <string name="contact_is_successfully_added">連絡先が正常に追加されました</string>
+    <string name="please_enter_sos_number">SOS 番号を入力してください!</string>
+    <string name="screen_colors">画面の色</string>
+    <string name="downloading_start">ダウンロード開始</string>
+    <string name="update_failed">アップデートに失敗しました</string>
+    <string name="restart">再起動</string>
+    <string name="new_app_is_ready">新しいアプリの準備ができました</string>
+    <string name="user_cancelled_the_operation">ユーザーが操作をキャンセルしました</string>
 </resources>

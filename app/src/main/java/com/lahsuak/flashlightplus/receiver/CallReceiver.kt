@@ -9,13 +9,16 @@ import android.hardware.camera2.CameraManager
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import com.lahsuak.flashlightplus.R
 import com.lahsuak.flashlightplus.service.CallService
-import com.lahsuak.flashlightplus.util.App.Companion.flashlightExist
-import com.lahsuak.flashlightplus.util.Constants.CALL_NOTIFICATION
-import com.lahsuak.flashlightplus.util.Constants.SHOW_NOTIFICATION
+import com.lahsuak.flashlightplus.util.AppConstants
+import com.lahsuak.flashlightplus.util.FlashLightApp.Companion.flashlightExist
+import com.lahsuak.flashlightplus.util.AppConstants.CALL_NOTIFICATION
+import com.lahsuak.flashlightplus.util.AppConstants.SHOW_NOTIFICATION
+import com.lahsuak.flashlightplus.util.logError
+import com.lahsuak.flashlightplus.util.toast
 
 class CallReceiver : BroadcastReceiver() {
     private var handler1: Handler? = Handler(Looper.getMainLooper())
@@ -30,11 +33,11 @@ class CallReceiver : BroadcastReceiver() {
 
         if (intent.action != null) {
             if (flashlightExist) {
-                if (intent.action == "Pause") {
-                    serviceIntent.putExtra("myActionName", false)
+                if (intent.action == AppConstants.PAUSE) {
+                    serviceIntent.putExtra(AppConstants.ACTION_NAME, false)
                     context.startService(serviceIntent)
-                } else if (intent.action == "Play") {
-                    serviceIntent.putExtra("myActionName", true)
+                } else if (intent.action == AppConstants.PLAY) {
+                    serviceIntent.putExtra(AppConstants.ACTION_NAME, true)
                     context.startService(serviceIntent)
                 }
             }
@@ -76,19 +79,20 @@ class CallReceiver : BroadcastReceiver() {
                 turnFlash(context, false)
             } else {
                 flashOn = !flashOn
-                handler1!!.postDelayed(onEverySecond!!, 300)
+                handler1!!.postDelayed(onEverySecond!!, AppConstants.BLINK_DELAY)
                 turnFlash(context, flashOn)
             }
         }
-        handler1!!.postDelayed(onEverySecond!!, 300)
+        handler1?.postDelayed(onEverySecond!!, AppConstants.BLINK_DELAY)
     }
 
     private fun turnFlash(context: Context, isCheck: Boolean) {
         val isFlashAvailableOnDevice =
             context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
         if (!isFlashAvailableOnDevice) {
-            Toast.makeText(context, "Your device doesn't support flash light", Toast.LENGTH_SHORT)
-                .show()
+            context.toast {
+                context.getString(R.string.device_doesn_t_support_flash_light)
+            }
         } else {
             val cameraManager =
                 context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
@@ -96,8 +100,8 @@ class CallReceiver : BroadcastReceiver() {
                 val cameraId = cameraManager.cameraIdList[0]
                 cameraManager.setTorchMode(cameraId, isCheck)
             } catch (e: CameraAccessException) {
+                e.logError()
             }
         }
     }
-
 }

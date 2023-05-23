@@ -58,4 +58,21 @@
     <string name="allow_perm">اجازت دیں</string>
     <string name="permission_desc">براہ کرم پڑھنے کی حالت کی اجازت دیں اور آنے والی کال کی اطلاع اور SOS خصوصیت کے لیے فون کال کی اجازت دیں۔</string>
     <string name="sos_call">کال کے ساتھ SOS</string>
+    <string name="no_application_found">درخواست نہیں ملی</string>
+    <string name="something_went_wrong">کچھ غلط ہو گیا!</string>
+    <string name="share_this_app">اس FlashLightApp کا اشتراک کریں</string>
+    <string name="please_write_suggestions">براہ کرم اپنی تجاویز یا مسائل لکھیں</string>
+    <string name="feedback_from_flashlight">FlashLight سے تاثرات، %s</string>
+    <string name="permission_denied"> اجازت نامنظور</string>
+    <string name="open_settings"> ترتیبات کھولیں</string>
+    <string name="device_doesn_t_support_flash_light">آپ کا آلہ فلیش لائٹ کو سپورٹ نہیں کرتا ہے</string>
+    <string name="sos_number">SOS نمبر</string>
+    <string name="contact_is_successfully_added">رابطہ کامیابی کے ساتھ شامل کیا گیا ہے</string>
+    <string name="please_enter_sos_number">براہ کرم SOS نمبر درج کریں!</string>
+    <string name="screen_colors">اسکرین کے رنگ</string>
+    <string name="downloading_start">ڈاؤن لوڈنگ شروع</string>
+    <string name="update_failed">اپ ڈیٹ ناکام ہو گیا</string>
+    <string name="restart">دوبارہ شروع کریں</string>
+    <string name="new_app_is_ready">نئی ایپ تیار ہے</string>
+    <string name="user_cancelled_the_operation">صارف نے آپریشن منسوخ کر دیا</string>
 </resources>

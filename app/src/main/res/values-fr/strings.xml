@@ -58,4 +58,21 @@
     <string name="allow_perm">Autoriser l\'autorisation</string>
     <string name="permission_desc">Veuillez autoriser l\'état de lecture et effectuer un appel téléphonique pour la notification d\'appel entrant et la fonction SOS.</string>
     <string name="sos_call">SOS avec appel</string>
+    <string name="no_application_found">Application introuvable</string>
+    <string name="something_went_wrong">Quelque chose s\'est mal passé !</string>
+    <string name="share_this_app">Partager cette FlashLightApp</string>
+    <string name="please_write_suggestions">Veuillez écrire vos suggestions ou problèmes</string>
+    <string name="feedback_from_flashlight">Commentaires de FlashLight, %s</string>
+    <string name="permission_denied">Autorisation refusée</string>
+    <string name="open_settings">Ouvrir les paramètres</string>
+    <string name="device_doesn_t_support_flash_light">Votre appareil ne prend pas en charge la lumière flash</string>
+    <string name="sos_number">Numéro SOS</string>
+    <string name="contact_is_successfully_added">Le contact a été ajouté avec succès</string>
+    <string name="please_enter_sos_number">Veuillez saisir le numéro SOS !</string>
+    <string name="screen_colors">Couleurs d\'écran</string>
+    <string name="downloading_start">Démarrage du téléchargement</string>
+    <string name="update_failed">Échec de la mise à jour</string>
+    <string name="restart">Redémarrer</string>
+    <string name="new_app_is_ready">La nouvelle application est prête</string>
+    <string name="user_cancelled_the_operation">L\'utilisateur a annulé l\'opération</string>
 </resources>

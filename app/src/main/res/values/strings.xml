@@ -61,4 +61,21 @@
     <string name="allow_perm">Allow permission</string>
     <string name="permission_desc">Please allow read state and make phone call permission for incoming call notification and SOS feature.</string>
     <string name="sos_call">SOS with call</string>
+    <string name="no_application_found">Application not found</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="share_this_app">Share this FlashLightApp</string>
+    <string name="please_write_suggestions">Please write your suggestions or issues</string>
+    <string name="feedback_from_flashlight">Feedback from FlashLight, %s</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="open_settings">Open settings</string>
+    <string name="device_doesn_t_support_flash_light">Your device doesn\'t support flash light</string>
+    <string name="sos_number">SOS Number</string>
+    <string name="contact_is_successfully_added">Contact is successfully added</string>
+    <string name="please_enter_sos_number">Please enter SOS Number!</string>
+    <string name="screen_colors">Screen Colors</string>
+    <string name="downloading_start">Downloading start</string>
+    <string name="update_failed">Update failed</string>
+    <string name="restart">Restart</string>
+    <string name="new_app_is_ready">New app is ready</string>
+    <string name="user_cancelled_the_operation">User cancelled the operation</string>
 </resources>

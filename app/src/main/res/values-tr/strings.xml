@@ -58,4 +58,21 @@
     <string name="allow_perm">İzin ver</string>
     <string name="permission_desc">Lütfen okuma durumuna izin verin ve gelen arama bildirimi ve SOS özelliği için telefon araması izni verin.</string>
     <string name="sos_call">Çağrılı SOS</string>
+    <string name="no_application_found">Uygulama bulunamadı</string>
+    <string name="something_went_wrong">Bir şeyler ters gitti!</string>
+    <string name="share_this_app">Bu FlashLightUygulamasını paylaşın</string>
+    <string name="please_write_suggestions">Lütfen önerilerinizi veya sorunlarınızı yazın</string>
+    <string name="feedback_from_flashlight">FlashLight\'tan Geri Bildirim, %s</string>
+    <string name="permission_denied">İzin reddedildi</string>
+    <string name="open_settings">Ayarları aç</string>
+    <string name="device_doesn_t_support_flash_light">Cihazınız flaş ışığını desteklemiyor</string>
+    <string name="sos_number">SOS Numarası</string>
+    <string name="contact_is_successfully_added">Kişi başarıyla eklendi</string>
+    <string name="please_enter_sos_number">Lütfen SOS Numarası girin!</string>
+    <string name="screen_colors">Ekran Renkleri</string>
+    <string name="downloading_start">İndirme başlangıcı</string>
+    <string name="update_failed">Güncelleme başarısız oldu</string>
+    <string name="restart">Yeniden Başlat</string>
+    <string name="new_app_is_ready">Yeni uygulama hazır</string>
+    <string name="user_cancelled_the_operation">Kullanıcı işlemi iptal etti</string>
 </resources>
