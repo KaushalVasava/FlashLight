@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.service
+package com.lahsuak.apps.flashlight.service
 
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.app.PendingIntent.getActivity
@@ -18,17 +18,17 @@ import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
-import com.lahsuak.flashlightplus.R
-import com.lahsuak.flashlightplus.`interface`.LightListener
-import com.lahsuak.flashlightplus.receiver.CallReceiver
-import com.lahsuak.flashlightplus.ui.activity.MainActivity
-import com.lahsuak.flashlightplus.util.AppConstants
-import com.lahsuak.flashlightplus.util.AppConstants.FLASH_EXIST
-import com.lahsuak.flashlightplus.util.AppConstants.FLASH_ON_START
-import com.lahsuak.flashlightplus.util.AppConstants.SETTING_DATA
-import com.lahsuak.flashlightplus.util.FlashLightApp
-import com.lahsuak.flashlightplus.util.logError
-import com.lahsuak.flashlightplus.util.toast
+import com.lahsuak.apps.flashlight.R
+import com.lahsuak.apps.flashlight.`interface`.LightListener
+import com.lahsuak.apps.flashlight.receiver.CallReceiver
+import com.lahsuak.apps.flashlight.ui.activity.MainActivity
+import com.lahsuak.apps.flashlight.util.AppConstants
+import com.lahsuak.apps.flashlight.util.AppConstants.FLASH_EXIST
+import com.lahsuak.apps.flashlight.util.AppConstants.FLASH_ON_START
+import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
+import com.lahsuak.apps.flashlight.util.FlashLightApp
+import com.lahsuak.apps.flashlight.util.logError
+import com.lahsuak.apps.flashlight.util.toast
 
 class CallService : Service() {
     private var isTorchOn = false

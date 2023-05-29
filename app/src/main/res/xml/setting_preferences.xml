@@ -10,14 +10,14 @@
             app:defaultValue="true"
             app:iconSpaceReserved="false"
             app:key="show_notification"
-            app:summaryOn="@string/enable"
             app:summaryOff="@string/disable"
+            app:summaryOn="@string/enable"
             app:title="@string/app_notification" />
 
         <SwitchPreferenceCompat
             app:defaultValue="true"
-            app:iconSpaceReserved="false"
             app:dependency="show_notification"
+            app:iconSpaceReserved="false"
             app:key="call_notification"
             app:summary="Whenever call arrives flash will be blinking"
             app:title="@string/incoming_notification"
@@ -28,22 +28,21 @@
         app:iconSpaceReserved="false"
         app:title="@string/special_feature">
         <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
             app:defaultValue="false"
+            app:iconSpaceReserved="false"
             app:key="sos_call"
             app:summaryOff="@string/disable"
             app:summaryOn="@string/enable"
             app:title="@string/sos_call" />
         <EditTextPreference
             android:title="SOS Number"
+            app:iconSpaceReserved="false"
             app:key="sos_number"
-            app:summary="SOS call for emergency condition"
-            app:iconSpaceReserved="false"
             app:singleLineTitle="true"
-            />
+            app:summary="SOS call for emergency condition" />
         <SwitchPreferenceCompat
+            app:defaultValue="false"
             app:iconSpaceReserved="false"
-            app:defaultValue="true"
             app:key="shake_to_light"
             app:summaryOff="@string/disable"
             app:summaryOn="@string/enable"

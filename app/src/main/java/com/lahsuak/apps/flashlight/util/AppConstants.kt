@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.apps.flashlight.util
 
 object AppConstants {
     const val SETTING_DATA = "SETTING_DATA"

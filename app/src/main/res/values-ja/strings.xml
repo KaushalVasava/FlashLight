@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">フラッシュライト+ </string>
+    <string name="app_name">フラッシュライト</string>
     <string name="turn_on_and_off_light">ライトのオンとオフを切り替える</string>
     <string name="sos"> SOS </string>
     <string name="ok"> OK </string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"> فلیش لائٹ +</string>
+    <string name="app_name"> فلیش لائٹ</string>
     <string name="turn_on_and_off_light">لائٹ آن اور آف کریں</string>
     <string name="sos">SOS</string>
     <string name="ok">ٹھیک ہے</string>

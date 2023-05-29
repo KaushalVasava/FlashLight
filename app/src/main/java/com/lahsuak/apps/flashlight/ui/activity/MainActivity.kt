@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.ui.activity
+package com.lahsuak.apps.flashlight.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,9 +8,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.lahsuak.flashlightplus.R
-import com.lahsuak.flashlightplus.databinding.ActivityMainBinding
-import com.lahsuak.flashlightplus.ui.fragments.HomeFragment.Companion.screenState
+import com.lahsuak.apps.flashlight.R
+import com.lahsuak.apps.flashlight.databinding.ActivityMainBinding
+import com.lahsuak.apps.flashlight.ui.fragments.HomeFragment.Companion.screenState
 
 class MainActivity :AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding

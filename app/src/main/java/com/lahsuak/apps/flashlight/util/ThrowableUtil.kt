@@ -1,7 +1,7 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.apps.flashlight.util
 
 import android.util.Log
-import com.lahsuak.flashlightplus.BuildConfig
+import com.lahsuak.apps.flashlight.BuildConfig
 
 const val LOG_ERROR_TAG = "[logError]"
 inline fun Throwable.logError(causeProvider: Throwable.() -> Throwable = { this }) {

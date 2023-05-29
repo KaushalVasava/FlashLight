@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Taschenlampe+</string>
+    <string name="app_name">Taschenlampe</string>
     <string name="turn_on_and_off_light">Licht ein- und ausschalten</string>
     <string name="sos">SOS</string>
     <string name="ok">OK</string>

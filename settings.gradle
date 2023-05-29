@@ -4,8 +4,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "FlashLightPlus"
+rootProject.name = "FlashLight"
 include ':app'

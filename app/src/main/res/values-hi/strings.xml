@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Flashlight+</string>
+    <string name="app_name">Flashlight</string>
     <string name="turn_on_and_off_light">लाइट चालू और बंद करें</string>
     <string name="sos">एसओएस</string>
     <string name="ok">ठीक है</string>
