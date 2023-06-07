@@ -1,4 +1,6 @@
-# FlashLight_PlusIt is easy to use flashlight app using a shake-to-wake device, SOS call and flashlight feature.
+# FlashLight_Plus
+
+It is easy to use flashlight app using a shake-to-wake device, SOS call and flashlight feature.
 
 Special Features of Flashlight app:
 1. Flashlight in the Dark
