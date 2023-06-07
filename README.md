@@ -44,6 +44,7 @@ And control the brightness level from 0 to 10 range.
 
 
 ![image3](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/29172b51-e457-4b17-94c3-f013e16e18a3)
+![Add a heading (2) (2)](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/a13f8a0e-ff4d-4464-a8af-2f0c6a926ae5)
 ![image6 (1)](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/0813db50-8031-4f18-b94b-c35c1e4c7bdd)
 ![image4](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/43a14088-5b6a-4446-80cb-0f1b6a6612f5)
 ![image5](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/0f761e14-7397-4869-b75b-07d50139ebf6)
