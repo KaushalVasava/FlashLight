@@ -9,4 +9,5 @@ object SharedPrefConstants {
     const val MORE_APP_KEY = "more_app"
     const val APP_VERSION_KEY = "app_version"
     const val RATING_KEY = "rating"
+    const val DEVELOPER = "developer"
 }

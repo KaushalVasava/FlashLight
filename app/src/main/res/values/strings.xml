@@ -78,4 +78,5 @@
     <string name="restart">Restart</string>
     <string name="new_app_is_ready">New app is ready</string>
     <string name="user_cancelled_the_operation">User cancelled the operation</string>
+    <string name="made_in_india" translatable="false">Made with ❤️ in India \uD83C\uDDEE\uD83C\uDDF3</string>
 </resources>

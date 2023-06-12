@@ -27,11 +27,11 @@ import com.lahsuak.apps.flashlight.util.AppConstants.FLASH_EXIST
 import com.lahsuak.apps.flashlight.util.AppConstants.FLASH_ON_START
 import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
 import com.lahsuak.apps.flashlight.util.FlashLightApp
+import com.lahsuak.apps.flashlight.util.FlashLightApp.Companion.isTorchOn
 import com.lahsuak.apps.flashlight.util.logError
 import com.lahsuak.apps.flashlight.util.toast
 
 class CallService : Service() {
-    private var isTorchOn = false
     private var lightListener: LightListener? = null
 
     private val binder: IBinder = MyBinder()
@@ -54,7 +54,7 @@ class CallService : Service() {
         try {
             val prefSetting = PreferenceManager.getDefaultSharedPreferences(baseContext)
             val checkStartUpFlash = prefSetting.getBoolean(FLASH_ON_START, false)
-            val actionName = intent?.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash)
+            val actionName = intent?.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash || isTorchOn)
             isTorchOn = actionName != false
             onLightClick(isTorchOn)
         } catch (e: NullPointerException) {
@@ -105,9 +105,11 @@ class CallService : Service() {
                 e.logError()
             }
         }
-        val pref = baseContext.getSharedPreferences(SETTING_DATA, MODE_PRIVATE).edit()
-        pref.putBoolean(FLASH_EXIST, FlashLightApp.flashlightExist)
-        pref.apply()
+        baseContext.getSharedPreferences(SETTING_DATA, MODE_PRIVATE).edit().apply {
+            putBoolean(FLASH_EXIST, FlashLightApp.flashlightExist)
+            apply()
+        }
+
     }
 
     fun showNotification(
@@ -124,8 +126,10 @@ class CallService : Service() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         val contentIntent = getActivity(this, 0, intent, pendingIntentFlag)
         val text: String = if (!isPlay) {
+            isTorchOn = false
             AppConstants.PLAY
         } else {
+            isTorchOn = true
             AppConstants.PAUSE
         }
 

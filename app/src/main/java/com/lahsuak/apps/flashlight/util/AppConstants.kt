@@ -1,6 +1,8 @@
 package com.lahsuak.apps.flashlight.util
 
 object AppConstants {
+    const val WEBSITE = "https://zaap.bio/KaushalVasava"
+
     const val SETTING_DATA = "SETTING_DATA"
     const val HAPTIC_FEEDBACK = "haptic_feedback"
     const val SHOW_NOTIFICATION = "show_notification"

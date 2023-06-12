@@ -2,10 +2,6 @@ package com.lahsuak.apps.flashlight.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -14,30 +10,22 @@ import com.lahsuak.apps.flashlight.R
 import com.lahsuak.apps.flashlight.ui.fragments.HomeFragment.Companion.sosNumber
 import com.lahsuak.apps.flashlight.util.AppConstants
 import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
+import com.lahsuak.apps.flashlight.util.AppUtil
+import com.lahsuak.apps.flashlight.util.AppUtil.appRating
+import com.lahsuak.apps.flashlight.util.AppUtil.moreApp
+import com.lahsuak.apps.flashlight.util.AppUtil.sendFeedbackMail
+import com.lahsuak.apps.flashlight.util.AppUtil.shareApp
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.APP_VERSION_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.DEVELOPER
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.FEEDBACK_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.MORE_APP_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.RATING_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.SHARE_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.SOS_NUMBER_KEY
-import com.lahsuak.apps.flashlight.util.Util.appRating
-import com.lahsuak.apps.flashlight.util.Util.moreApp
-import com.lahsuak.apps.flashlight.util.Util.sendFeedbackMail
-import com.lahsuak.apps.flashlight.util.Util.shareApp
 import com.lahsuak.apps.flashlight.util.toast
 import java.util.regex.Pattern
 
 class SettingsFragment : PreferenceFragmentCompat() {
-
-    //in-app review
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        (activity as AppCompatActivity).supportActionBar?.show()
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.setting_preferences, rootKey)
@@ -48,6 +36,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefVersion = findPreference<Preference>(APP_VERSION_KEY)
         val prefRating = findPreference<Preference>(RATING_KEY)
         val prefSosNumber = findPreference<EditTextPreference>(SOS_NUMBER_KEY)
+        val prefDeveloper = findPreference<Preference>(DEVELOPER)
 
         prefSosNumber?.summary = if (sosNumber != null) {
             prefSosNumber?.text = sosNumber
@@ -96,6 +85,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
         prefRating?.setOnPreferenceClickListener {
             appRating(requireContext())
+            true
+        }
+        prefDeveloper?.setOnPreferenceClickListener {
+            AppUtil.openWebsite(context, AppConstants.WEBSITE)
             true
         }
     }
