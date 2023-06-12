@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.apps.flashlight.util
 
 import android.app.Application
 import android.app.NotificationChannel
@@ -7,12 +7,14 @@ import android.content.Context
 import android.os.Build
 
 class FlashLightApp : Application() {
+
     companion object {
+        var isTorchOn = false
         var flashlightExist = true
         lateinit var appContext: Context
     }
 
-    var manager: NotificationManager? = null
+    private var manager: NotificationManager? = null
 
     override fun onCreate() {
         super.onCreate()

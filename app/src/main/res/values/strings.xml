@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flashlight+</string>
+    <string name="app_name">Flashlight</string>
     <string name="turn_on_and_off_light">Turn on and off light</string>
     <string name="feedback_email" translatable="false">kaushalvasava.app.feedback@gmail.com</string>
     <string name="sos">SOS</string>
@@ -78,4 +78,5 @@
     <string name="restart">Restart</string>
     <string name="new_app_is_ready">New app is ready</string>
     <string name="user_cancelled_the_operation">User cancelled the operation</string>
+    <string name="made_in_india" translatable="false">Made with ❤️ in India \uD83C\uDDEE\uD83C\uDDF3</string>
 </resources>

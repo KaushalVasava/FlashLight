@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.apps.flashlight.util
 
 object SharedPrefConstants {
     const val FIRST_TIME_USE_KEY = "first_time"
@@ -9,4 +9,5 @@ object SharedPrefConstants {
     const val MORE_APP_KEY = "more_app"
     const val APP_VERSION_KEY = "app_version"
     const val RATING_KEY = "rating"
+    const val DEVELOPER = "developer"
 }

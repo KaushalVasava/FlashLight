@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.apps.flashlight.util
 
 import android.app.Activity
 import android.content.pm.PackageManager
@@ -7,7 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import com.lahsuak.flashlightplus.R
+import com.lahsuak.apps.flashlight.R
 
 object PermissionUtil {
     inline fun checkAndLaunchPermission(
@@ -56,7 +56,7 @@ object PermissionUtil {
             view.context.getString(R.string.permission_denied),
             Snackbar.LENGTH_LONG
         ).setAction(R.string.open_settings) {
-            Util.openSettingsPage(activity)
+            AppUtil.openSettingsPage(activity)
         }
         snackBar.show()
     }

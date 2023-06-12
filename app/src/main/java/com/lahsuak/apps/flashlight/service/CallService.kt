@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.service
+package com.lahsuak.apps.flashlight.service
 
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.app.PendingIntent.getActivity
@@ -18,20 +18,20 @@ import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
-import com.lahsuak.flashlightplus.R
-import com.lahsuak.flashlightplus.`interface`.LightListener
-import com.lahsuak.flashlightplus.receiver.CallReceiver
-import com.lahsuak.flashlightplus.ui.activity.MainActivity
-import com.lahsuak.flashlightplus.util.AppConstants
-import com.lahsuak.flashlightplus.util.AppConstants.FLASH_EXIST
-import com.lahsuak.flashlightplus.util.AppConstants.FLASH_ON_START
-import com.lahsuak.flashlightplus.util.AppConstants.SETTING_DATA
-import com.lahsuak.flashlightplus.util.FlashLightApp
-import com.lahsuak.flashlightplus.util.logError
-import com.lahsuak.flashlightplus.util.toast
+import com.lahsuak.apps.flashlight.R
+import com.lahsuak.apps.flashlight.`interface`.LightListener
+import com.lahsuak.apps.flashlight.receiver.CallReceiver
+import com.lahsuak.apps.flashlight.ui.activity.MainActivity
+import com.lahsuak.apps.flashlight.util.AppConstants
+import com.lahsuak.apps.flashlight.util.AppConstants.FLASH_EXIST
+import com.lahsuak.apps.flashlight.util.AppConstants.FLASH_ON_START
+import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
+import com.lahsuak.apps.flashlight.util.FlashLightApp
+import com.lahsuak.apps.flashlight.util.FlashLightApp.Companion.isTorchOn
+import com.lahsuak.apps.flashlight.util.logError
+import com.lahsuak.apps.flashlight.util.toast
 
 class CallService : Service() {
-    private var isTorchOn = false
     private var lightListener: LightListener? = null
 
     private val binder: IBinder = MyBinder()
@@ -51,11 +51,15 @@ class CallService : Service() {
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val prefSetting = PreferenceManager.getDefaultSharedPreferences(baseContext)
-        val checkStartUpFlash = prefSetting.getBoolean(FLASH_ON_START, false)
-        val actionName = intent!!.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash)
-        isTorchOn = actionName != false
-        onLightClick(isTorchOn)
+        try {
+            val prefSetting = PreferenceManager.getDefaultSharedPreferences(baseContext)
+            val checkStartUpFlash = prefSetting.getBoolean(FLASH_ON_START, false)
+            val actionName = intent?.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash || isTorchOn)
+            isTorchOn = actionName != false
+            onLightClick(isTorchOn)
+        } catch (e: NullPointerException) {
+            e.printStackTrace()
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -101,9 +105,11 @@ class CallService : Service() {
                 e.logError()
             }
         }
-        val pref = baseContext.getSharedPreferences(SETTING_DATA, MODE_PRIVATE).edit()
-        pref.putBoolean(FLASH_EXIST, FlashLightApp.flashlightExist)
-        pref.apply()
+        baseContext.getSharedPreferences(SETTING_DATA, MODE_PRIVATE).edit().apply {
+            putBoolean(FLASH_EXIST, FlashLightApp.flashlightExist)
+            apply()
+        }
+
     }
 
     fun showNotification(
@@ -120,8 +126,10 @@ class CallService : Service() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         val contentIntent = getActivity(this, 0, intent, pendingIntentFlag)
         val text: String = if (!isPlay) {
+            isTorchOn = false
             AppConstants.PLAY
         } else {
+            isTorchOn = true
             AppConstants.PAUSE
         }
 

@@ -27,7 +27,7 @@
             android:padding="15dp">
 
             <ImageButton
-                android:id="@+id/playBtn"
+                android:id="@+id/btn_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -38,13 +38,13 @@
                 android:padding="15dp"
                 android:rotation="-45"
                 android:src="@drawable/ic_flashlight_off"
-                app:layout_constraintBottom_toTopOf="@id/settingBtn"
-                app:layout_constraintEnd_toStartOf="@+id/screen_flashlight"
+                app:layout_constraintBottom_toTopOf="@id/btn_setting"
+                app:layout_constraintEnd_toStartOf="@+id/btn_screen_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/screen_flashlight"
+                android:id="@+id/btn_screen_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -53,10 +53,10 @@
                 android:hapticFeedbackEnabled="true"
                 android:padding="15dp"
                 android:src="@drawable/ic_device"
-                app:layout_constraintBottom_toBottomOf="@id/playBtn"
+                app:layout_constraintBottom_toBottomOf="@id/btn_play"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/playBtn"
-                app:layout_constraintTop_toTopOf="@id/playBtn" />
+                app:layout_constraintStart_toEndOf="@+id/btn_play"
+                app:layout_constraintTop_toTopOf="@id/btn_play" />
 
             <ImageButton
                 android:id="@+id/screen_color"
@@ -68,13 +68,13 @@
                 android:padding="15dp"
                 android:src="@drawable/ic_color_fill"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/settingBtn"
-                app:layout_constraintEnd_toEndOf="@id/playBtn"
-                app:layout_constraintStart_toStartOf="@id/playBtn"
-                app:layout_constraintTop_toTopOf="@id/settingBtn" />
+                app:layout_constraintBottom_toBottomOf="@id/btn_setting"
+                app:layout_constraintEnd_toEndOf="@id/btn_play"
+                app:layout_constraintStart_toStartOf="@id/btn_play"
+                app:layout_constraintTop_toTopOf="@id/btn_setting" />
 
             <ImageButton
-                android:id="@+id/sosBtn"
+                android:id="@+id/btn_sos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sos_background"
@@ -83,13 +83,13 @@
                 android:padding="15dp"
                 android:src="@drawable/ic_sos_off"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@id/settingBtn"
-                app:layout_constraintEnd_toEndOf="@id/playBtn"
-                app:layout_constraintStart_toStartOf="@id/playBtn"
-                app:layout_constraintTop_toTopOf="@id/settingBtn" />
+                app:layout_constraintBottom_toBottomOf="@id/btn_setting"
+                app:layout_constraintEnd_toEndOf="@id/btn_play"
+                app:layout_constraintStart_toStartOf="@id/btn_play"
+                app:layout_constraintTop_toTopOf="@id/btn_setting" />
 
             <ImageButton
-                android:id="@+id/settingBtn"
+                android:id="@+id/btn_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -99,9 +99,9 @@
                 android:padding="15dp"
                 android:src="@drawable/ic_settings"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/screen_flashlight"
-                app:layout_constraintStart_toStartOf="@id/screen_flashlight"
-                app:layout_constraintTop_toBottomOf="@id/playBtn" />
+                app:layout_constraintEnd_toEndOf="@id/btn_screen_light"
+                app:layout_constraintStart_toStartOf="@id/btn_screen_light"
+                app:layout_constraintTop_toBottomOf="@id/btn_play" />
             <!--        </LinearLayout>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -126,7 +126,7 @@
             android:padding="10dp">
 
             <com.google.android.material.slider.Slider
-                android:id="@+id/lightSlider"
+                android:id="@+id/light_slider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -142,7 +142,7 @@
                 app:trackColor="@color/white" />
 
             <TextView
-                android:id="@+id/blinking_label"
+                android:id="@+id/txt_blinking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/blinking_speed"

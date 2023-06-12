@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">手电筒+</string>
+    <string name="app_name">手电筒</string>
     <string name="turn_on_and_off_light">开关灯</string>
     <string name="sos">SOS</string>
     <string name="ok">确定</string>

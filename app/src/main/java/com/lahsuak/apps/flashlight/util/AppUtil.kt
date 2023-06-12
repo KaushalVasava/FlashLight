@@ -1,9 +1,13 @@
-package com.lahsuak.flashlightplus.util
+package com.lahsuak.apps.flashlight.util
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.hardware.Sensor
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
@@ -12,11 +16,13 @@ import android.os.Looper
 import android.provider.Settings
 import android.view.HapticFeedbackConstants
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
-import com.lahsuak.flashlightplus.BuildConfig
-import com.lahsuak.flashlightplus.R
+import com.lahsuak.apps.flashlight.BuildConfig
+import com.lahsuak.apps.flashlight.R
 
-object Util {
+object AppUtil {
     var ShakeThreshold = 32.5f
     fun playSound(context: Context) {
         val mediaPlayer = MediaPlayer.create(context, R.raw.click_sound)
@@ -103,6 +109,23 @@ object Util {
         }
     }
 
+    fun openWebsite(context: Context?, url: String) {
+        context ?: return
+        try {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            context.startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            e.logError()
+            context.toast {
+                context.getString(R.string.no_application_found)
+            }
+        } catch (e: Throwable) {
+            e.logError()
+            context.toast { context.getString(R.string.something_went_wrong) }
+        }
+    }
+
     fun openSettingsPage(activity: Activity?) {
         activity ?: return
         activity.runActivityCatching {
@@ -139,4 +162,16 @@ fun postBlockInMainLooper(block: () -> Unit) {
     } else {
         Handler(Looper.getMainLooper()).post(block)
     }
+}
+
+fun Context.getAnime(): Animation {
+    return AnimationUtils.loadAnimation(this, R.anim.fade_out)
+}
+fun Context.setSensor(listener: SensorEventListener): SensorManager {
+    val sensorManager = this.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+    if (sensor != null) {
+        sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+    }
+    return sensorManager
 }

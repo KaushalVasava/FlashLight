@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lampe de poche+</string>
+    <string name="app_name">Lampe de poche</string>
     <string name="turn_on_and_off_light">Allumer et éteindre la lumière</string>
     <string name="sos">SOS</string>
     <string name="ok">OK</string>

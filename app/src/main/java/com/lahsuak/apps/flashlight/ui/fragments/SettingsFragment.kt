@@ -1,43 +1,31 @@
-package com.lahsuak.flashlightplus.ui.fragments
+package com.lahsuak.apps.flashlight.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.lahsuak.flashlightplus.BuildConfig
-import com.lahsuak.flashlightplus.R
-import com.lahsuak.flashlightplus.ui.fragments.HomeFragment.Companion.sosNumber
-import com.lahsuak.flashlightplus.util.AppConstants
-import com.lahsuak.flashlightplus.util.AppConstants.SETTING_DATA
-import com.lahsuak.flashlightplus.util.SharedPrefConstants.APP_VERSION_KEY
-import com.lahsuak.flashlightplus.util.SharedPrefConstants.FEEDBACK_KEY
-import com.lahsuak.flashlightplus.util.SharedPrefConstants.MORE_APP_KEY
-import com.lahsuak.flashlightplus.util.SharedPrefConstants.RATING_KEY
-import com.lahsuak.flashlightplus.util.SharedPrefConstants.SHARE_KEY
-import com.lahsuak.flashlightplus.util.SharedPrefConstants.SOS_NUMBER_KEY
-import com.lahsuak.flashlightplus.util.Util.appRating
-import com.lahsuak.flashlightplus.util.Util.moreApp
-import com.lahsuak.flashlightplus.util.Util.sendFeedbackMail
-import com.lahsuak.flashlightplus.util.Util.shareApp
-import com.lahsuak.flashlightplus.util.toast
+import com.lahsuak.apps.flashlight.BuildConfig
+import com.lahsuak.apps.flashlight.R
+import com.lahsuak.apps.flashlight.ui.fragments.HomeFragment.Companion.sosNumber
+import com.lahsuak.apps.flashlight.util.AppConstants
+import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
+import com.lahsuak.apps.flashlight.util.AppUtil
+import com.lahsuak.apps.flashlight.util.AppUtil.appRating
+import com.lahsuak.apps.flashlight.util.AppUtil.moreApp
+import com.lahsuak.apps.flashlight.util.AppUtil.sendFeedbackMail
+import com.lahsuak.apps.flashlight.util.AppUtil.shareApp
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.APP_VERSION_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.DEVELOPER
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.FEEDBACK_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.MORE_APP_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.RATING_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.SHARE_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.SOS_NUMBER_KEY
+import com.lahsuak.apps.flashlight.util.toast
 import java.util.regex.Pattern
 
 class SettingsFragment : PreferenceFragmentCompat() {
-
-    //in-app review
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        (activity as AppCompatActivity).supportActionBar?.show()
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.setting_preferences, rootKey)
@@ -48,12 +36,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefVersion = findPreference<Preference>(APP_VERSION_KEY)
         val prefRating = findPreference<Preference>(RATING_KEY)
         val prefSosNumber = findPreference<EditTextPreference>(SOS_NUMBER_KEY)
+        val prefDeveloper = findPreference<Preference>(DEVELOPER)
 
-        if (sosNumber != null) {
+        prefSosNumber?.summary = if (sosNumber != null) {
             prefSosNumber?.text = sosNumber
-            prefSosNumber?.summary = sosNumber
+            sosNumber
         } else {
-            prefSosNumber?.summary = getString(R.string.enter_sos_number)
+            getString(R.string.enter_sos_number)
         }
         prefSosNumber?.setOnPreferenceChangeListener { _, newValue ->
             try {
@@ -96,6 +85,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
         prefRating?.setOnPreferenceClickListener {
             appRating(requireContext())
+            true
+        }
+        prefDeveloper?.setOnPreferenceClickListener {
+            AppUtil.openWebsite(context, AppConstants.WEBSITE)
             true
         }
     }

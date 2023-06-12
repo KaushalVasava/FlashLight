@@ -1,4 +1,4 @@
-package com.lahsuak.flashlightplus.receiver
+package com.lahsuak.apps.flashlight.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,14 +11,14 @@ import android.os.Looper
 import android.telephony.TelephonyManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.lahsuak.flashlightplus.R
-import com.lahsuak.flashlightplus.service.CallService
-import com.lahsuak.flashlightplus.util.AppConstants
-import com.lahsuak.flashlightplus.util.FlashLightApp.Companion.flashlightExist
-import com.lahsuak.flashlightplus.util.AppConstants.CALL_NOTIFICATION
-import com.lahsuak.flashlightplus.util.AppConstants.SHOW_NOTIFICATION
-import com.lahsuak.flashlightplus.util.logError
-import com.lahsuak.flashlightplus.util.toast
+import com.lahsuak.apps.flashlight.R
+import com.lahsuak.apps.flashlight.service.CallService
+import com.lahsuak.apps.flashlight.util.AppConstants
+import com.lahsuak.apps.flashlight.util.FlashLightApp.Companion.flashlightExist
+import com.lahsuak.apps.flashlight.util.AppConstants.CALL_NOTIFICATION
+import com.lahsuak.apps.flashlight.util.AppConstants.SHOW_NOTIFICATION
+import com.lahsuak.apps.flashlight.util.logError
+import com.lahsuak.apps.flashlight.util.toast
 
 class CallReceiver : BroadcastReceiver() {
     private var handler1: Handler? = Handler(Looper.getMainLooper())
