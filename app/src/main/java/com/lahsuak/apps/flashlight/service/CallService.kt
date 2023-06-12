@@ -51,11 +51,15 @@ class CallService : Service() {
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val prefSetting = PreferenceManager.getDefaultSharedPreferences(baseContext)
-        val checkStartUpFlash = prefSetting.getBoolean(FLASH_ON_START, false)
-        val actionName = intent!!.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash)
-        isTorchOn = actionName != false
-        onLightClick(isTorchOn)
+        try {
+            val prefSetting = PreferenceManager.getDefaultSharedPreferences(baseContext)
+            val checkStartUpFlash = prefSetting.getBoolean(FLASH_ON_START, false)
+            val actionName = intent?.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash)
+            isTorchOn = actionName != false
+            onLightClick(isTorchOn)
+        } catch (e: NullPointerException) {
+            e.printStackTrace()
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
