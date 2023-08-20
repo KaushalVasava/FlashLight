@@ -1,4 +1,4 @@
-# FlashLight_Plus
+# FlashLight
 
 It is easy to use flashlight app using a shake-to-wake device, SOS call and flashlight feature.
 
