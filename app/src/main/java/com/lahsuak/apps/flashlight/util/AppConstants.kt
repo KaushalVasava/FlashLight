@@ -37,5 +37,8 @@ object AppConstants {
 
     const val PHONE_NUMBER_PATTERN =
         "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$"
+
+    const val MAX_COUNTER_FOR_MORE_APPS = 5
+    const val MORE_APPS_DELAY = 10000L
 }
 

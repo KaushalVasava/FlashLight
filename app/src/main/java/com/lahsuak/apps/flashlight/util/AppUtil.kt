@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.hardware.Sensor
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -14,6 +13,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.util.TypedValue
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.animation.Animation
@@ -23,7 +23,7 @@ import com.lahsuak.apps.flashlight.BuildConfig
 import com.lahsuak.apps.flashlight.R
 
 object AppUtil {
-    var ShakeThreshold = 32.5f
+    var shakeThreshold = 32.5f
     fun playSound(context: Context) {
         val mediaPlayer = MediaPlayer.create(context, R.raw.click_sound)
         mediaPlayer.start()
@@ -32,12 +32,13 @@ object AppUtil {
     fun hapticFeedback(view: View) {
         view.performHapticFeedback(
             HapticFeedbackConstants.VIRTUAL_KEY,
-            HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING // Ignore device's setting. Otherwise, you can use FLAG_IGNORE_VIEW_SETTING to ignore view's setting.
+            HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING
+            // Ignore device's setting. Otherwise, you can use FLAG_IGNORE_VIEW_SETTING to ignore view's setting.
         )
     }
 
     //settings methods
-    fun moreApp(context: Context) {
+    fun openMoreApp(context: Context) {
         try {
             context.startActivity(
                 Intent(
@@ -137,7 +138,7 @@ object AppUtil {
         }
     }
 
-    inline fun Context?.runActivityCatching(block: () -> Unit) {
+    private inline fun Context?.runActivityCatching(block: () -> Unit) {
         this ?: return
         try {
             block()
@@ -174,4 +175,10 @@ fun Context.setSensor(listener: SensorEventListener): SensorManager {
         sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
     return sensorManager
+}
+
+fun Context.getAttribute(resId: Int): Int {
+    val value = TypedValue()
+    this.theme.resolveAttribute(resId, value, true)
+    return value.data
 }
