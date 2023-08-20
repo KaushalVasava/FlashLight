@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Flashlight</string>
+    <string name="turn_on_and_off_light">Ligar e desligar a luz</string>
+    <string name="feedback_email" translatable="false">kaushalvasava.app.feedback@gmail.com</string>
+    <string name="sos">SOS</string>
+    <string name="ok">OK</string>
+    <string name="settings">Configurações</string>
+    <string name="more_apps">Mais aplicativos</string>
+    <string name="share_app">Compartilhe este aplicativo</string>
+    <string name="feedback">Comentários</string>
+    <string name="app_version">Versão do aplicativo</string>
+    <string name="blinking_speed">Velocidade de intermitência: %d</string>
+    <string name="brightness_level">Nível de brilho: %d</string>
+    <string name="blinking_time">Tempo de piscar</string>
+    <string name="enter_sos_number">Insira o número SOS</string>
+    <string name="cancel">Cancelar</string>
+    <string name="done">Concluído</string>
+    <string name="sensitivity">Sensibilidade de agitação: %.2f</string>
+    <string name="incoming_call">Luz intermitente de chamada recebida</string>
+    <string name="light_blinking_speed">Velocidade de intermitência da luz do flash</string>
+    <string name="flash_light">Luz do Flash</string>
+    <string name="shake_sensitivity">Sensibilidade de agitação</string>
+    <string name="big_lamp">Lâmpada grande como interruptor</string>
+    <string name="shake_to_light">Agitar para acordar</string>
+    <string name="sos_toast">Por favor, insira um número de telefone válido!</string>
+    <string name="camera_denied_toast">Permissão de câmera negada!,Permissão de câmera necessária para lanterna</string>
+    <string name="flash_camera_toast">Recurso de luz do flash agora funcionando</string>
+    <string name="phone_denied_toast">Estado do telefone Permissão negada</string>
+    <string name="blinking_toast">O flash piscará sempre que a chamada chegar</string>
+    <string name="phone_call_denied_toast">Permissão de telefone negada</string>
+    <string name="market_string" translatetable="false">market://search?q=pub:Kaushal Vasava</string>
+    <string name="market_developer_string" translatable="false">http://play.google.com/store/apps/developer?id=Kaushal Vasava</string>
+    <string name="play_store_share" translatetable="false">https://play.google.com/store/apps/details?id=</string>
+    <string name="switch_txt">Alternar luz da tela e luz do flash</string>
+    <string name="contact_support">Entre em contato com o suporte ou solicitação de recurso</string>
+    <string name="rating">Avalie-nos para demonstrar seu amor</string>
+    <string name="playback_speed" traduzable="false">%.2fx</string>
+    <string name="tap_gesture">Tocar 2 vezes à esquerda na imagem para retroceder 10 segundos e tocar 2 vezes à direita na imagem para avançar 10 segundos </string>
+    <string name="feedback_text">Envie comentários ou solicite recurso para que possamos melhorar nosso aplicativo. Se o aplicativo continuar travando \'Limpe os dados do aplicativo\' ou envie um e-mail ou mensagem do Instagram</string>
+    <string name="rating_text">Gostou deste aplicativo? Conte-nos na Google Play Store como podemos torná-lo ainda melhor</string>
+    <string name="more_app_text">Confira outros aplicativos</string>
+    <string name="share_text">Compartilhe o aplicativo com seus amigos e familiares</string>
+    <string name="developer">Desenvolvedor</string>
+    <string name="developer_name">Kaushal Vasava</string>
+    <string name="about">Sobre</string>
+    <string name="current_version">Versão atual</string>
+    <string name="more_options">Mais opções</string>
+    <string name="more">Mais</string>
+    <string name="save">Salvar</string>
+    <string name="enable">ativar</string>
+    <string name="disable">desativar</string>
+    <string name="sound_vibration">Som e vibração</string>
+    <string name="special_feature">Recursos especiais</string>
+    <string name="notification">Notificação</string>
+    <string name="incoming_notification">Notificação de chamada recebida</string>
+    <string name="app_notification">Notificação do aplicativo</string>
+    <string name="touch_sound">Som de toque</string>
+    <string name="haptic_feedback">Feedback tátil</string>
+    <string name="turn_on_startup">Ativar na inicialização</string>
+    <string name="allow_perm">Permitir permissão</string>
+    <string name="permission_desc">Permita o estado de leitura e faça chamadas telefônicas para notificação de chamadas recebidas e recurso SOS.</string>
+    <string name="sos_call">SOS com chamada</string>
+    <string name="no_application_found">Aplicativo não encontrado</string>
+    <string name="something_went_wrong">Algo deu errado!</string>
+    <string name="share_this_app">Compartilhe este FlashLightApp</string>
+    <string name="please_write_suggestions">Por favor, escreva suas sugestões ou problemas</string>
+    <string name="feedback_from_flashlight">Feedback do FlashLight, %s</string>
+    <string name="permission_denied">Permissão negada</string>
+    <string name="open_settings">Abrir configurações</string>
+    <string name="device_doesn_t_support_flash_light">Seu dispositivo não suporta luz de flash</string>
+    <string name="sos_number">Número SOS</string>
+    <string name="contact_is_successfully_added">O contato foi adicionado com sucesso</string>
+    <string name="please_enter_sos_number">Por favor, insira o número SOS!</string>
+    <string name="screen_colors">Cores da tela</string>
+    <string name="downloading_start">Início do download</string>
+    <string name="update_failed">Falha na atualização</string>
+    <string name="restart">Reiniciar</string>
+    <string name="new_app_is_ready">Novo aplicativo está pronto</string>
+    <string name="user_cancelled_the_operation">O usuário cancelou a operação</string>
+    <string name="made_in_india" translatable="false">Feito com ❤️ na Índia \uD83C\uDDEE\uD83C\uDDF3</string>
+    <string name="instagram">Instagram</string>
+    <string name="follow_me_on_instagram">Siga-me no Instagram</string>
+    <string name="language">Idioma</string>
+</resources>

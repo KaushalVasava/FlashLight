@@ -3,29 +3,41 @@ package com.lahsuak.apps.flashlight.ui.fragments
 import android.content.Context
 import android.os.Bundle
 import androidx.preference.EditTextPreference
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.lahsuak.apps.flashlight.BuildConfig
 import com.lahsuak.apps.flashlight.R
 import com.lahsuak.apps.flashlight.ui.fragments.HomeFragment.Companion.sosNumber
 import com.lahsuak.apps.flashlight.util.AppConstants
+import com.lahsuak.apps.flashlight.util.AppConstants.LANGUAGE_DEFAULT_VALUE
+import com.lahsuak.apps.flashlight.util.AppConstants.LANGUAGE_SHARED_PREFERENCE
+import com.lahsuak.apps.flashlight.util.AppConstants.LANGUAGE_SHARED_PREFERENCE_KEY
 import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
 import com.lahsuak.apps.flashlight.util.AppUtil
 import com.lahsuak.apps.flashlight.util.AppUtil.appRating
-import com.lahsuak.apps.flashlight.util.AppUtil.moreApp
+import com.lahsuak.apps.flashlight.util.AppUtil.openMoreApp
 import com.lahsuak.apps.flashlight.util.AppUtil.sendFeedbackMail
 import com.lahsuak.apps.flashlight.util.AppUtil.shareApp
+import com.lahsuak.apps.flashlight.util.LanguageUtil.Companion.changeLocale
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.APP_VERSION_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.DEVELOPER
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.FEEDBACK_KEY
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.INSTAGRAM_APP
+import com.lahsuak.apps.flashlight.util.SharedPrefConstants.LANGUAGE_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.MORE_APP_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.RATING_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.SHARE_KEY
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.SOS_NUMBER_KEY
 import com.lahsuak.apps.flashlight.util.toast
+import java.util.Locale
 import java.util.regex.Pattern
 
 class SettingsFragment : PreferenceFragmentCompat() {
+
+    companion object {
+        var selectedLang = LANGUAGE_DEFAULT_VALUE
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.setting_preferences, rootKey)
@@ -37,6 +49,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefRating = findPreference<Preference>(RATING_KEY)
         val prefSosNumber = findPreference<EditTextPreference>(SOS_NUMBER_KEY)
         val prefDeveloper = findPreference<Preference>(DEVELOPER)
+        val prefInstagram = findPreference<Preference>(INSTAGRAM_APP)
+        val prefLanguage = findPreference<ListPreference>(LANGUAGE_KEY)
 
         prefSosNumber?.summary = if (sosNumber != null) {
             prefSosNumber?.text = sosNumber
@@ -44,6 +58,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         } else {
             getString(R.string.enter_sos_number)
         }
+        val pref = requireContext().getSharedPreferences(LANGUAGE_SHARED_PREFERENCE,
+            Context.MODE_PRIVATE
+        )
+        selectedLang =
+            pref.getString(LANGUAGE_SHARED_PREFERENCE_KEY, LANGUAGE_DEFAULT_VALUE)
+                ?: Locale.getDefault().language
+
         prefSosNumber?.setOnPreferenceChangeListener { _, newValue ->
             try {
                 val r = Pattern.compile(AppConstants.PHONE_NUMBER_PATTERN)
@@ -75,12 +96,21 @@ class SettingsFragment : PreferenceFragmentCompat() {
             sendFeedbackMail(requireContext())
             true
         }
+        prefLanguage?.setOnPreferenceChangeListener { _, newValue ->
+            selectedLang = newValue as String
+            requireContext().changeLocale(selectedLang)
+            true
+        }
+        prefInstagram?.setOnPreferenceClickListener {
+            AppUtil.openInstagram(requireContext())
+            true
+        }
         prefShare?.setOnPreferenceClickListener {
             shareApp(requireContext())
             true
         }
         prefMoreApp?.setOnPreferenceClickListener {
-            moreApp(requireContext())
+            openMoreApp(requireContext())
             true
         }
         prefRating?.setOnPreferenceClickListener {

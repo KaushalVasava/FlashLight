@@ -75,4 +75,7 @@
     <string name="restart">Reiniciar</string>
     <string name="new_app_is_ready">La nueva aplicación está lista</string>
     <string name="user_cancelled_the_operation">El usuario canceló la operación</string>
+    <string name="instagram">Instagram</string>
+    <string name="follow_me_on_instagram">Sígueme en Instagram</string>
+    <string name="language">Idioma</string>
 </resources>

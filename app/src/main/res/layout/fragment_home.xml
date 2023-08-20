@@ -7,7 +7,6 @@
     android:background="@color/blue"
     tools:context=".ui.fragments.HomeFragment">
 
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
@@ -102,7 +101,6 @@
                 app:layout_constraintEnd_toEndOf="@id/btn_screen_light"
                 app:layout_constraintStart_toStartOf="@id/btn_screen_light"
                 app:layout_constraintTop_toBottomOf="@id/btn_play" />
-            <!--        </LinearLayout>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -135,22 +133,22 @@
                 android:background="@drawable/slider_background"
                 android:contentDescription="@string/light_blinking_speed"
                 android:stepSize="10.0"
+                android:value="40.0"
                 android:valueFrom="0.0"
                 android:valueTo="100.0"
                 app:labelBehavior="floating"
                 app:thumbColor="@color/light_blue"
-                app:trackColor="@color/white" />
+                app:trackColorInactive="@color/white" />
 
             <TextView
                 android:id="@+id/txt_blinking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/blinking_speed"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
+                android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -166,6 +164,50 @@
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/img_apps" />
+
+    <ImageView
+        android:id="@+id/img_apps"
+        style="@style/ImageViewStyleCircular"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/more_apps"
+        app:layout_constraintDimensionRatio="H,5:1"
+        android:scaleType="centerInside"
+        android:src="@drawable/apps"
+        app:layout_constraintEnd_toEndOf="@id/txt_more_apps"
+        app:layout_constraintStart_toStartOf="@id/txt_more_apps"
+        app:layout_constraintTop_toBottomOf="@id/txt_more_apps" />
+
+    <TextView
+        android:id="@+id/txt_more_apps"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/more_app_text"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toStartOf="@id/btn_more_apps"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btn_more_apps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/more_apps"
+        android:visibility="gone"
+        android:layout_marginHorizontal="8dp"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_apps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txt_more_apps"
+        app:layout_constraintTop_toTopOf="@id/txt_more_apps"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

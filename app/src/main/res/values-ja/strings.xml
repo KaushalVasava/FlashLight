@@ -75,4 +75,7 @@
     <string name="restart">再起動</string>
     <string name="new_app_is_ready">新しいアプリの準備ができました</string>
     <string name="user_cancelled_the_operation">ユーザーが操作をキャンセルしました</string>
+    <string name="instagram">インスタグラム</string>
+    <string name="follow_me_on_instagram">Instagram でフォローしてください</string>
+    <string name="language">言語</string>
 </resources>

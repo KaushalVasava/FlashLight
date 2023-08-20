@@ -75,4 +75,7 @@
     <string name="restart">Yeniden Başlat</string>
     <string name="new_app_is_ready">Yeni uygulama hazır</string>
     <string name="user_cancelled_the_operation">Kullanıcı işlemi iptal etti</string>
+    <string name="instagram">Instagram</string>
+    <string name="follow_me_on_instagram">Beni Instagram\'da takip et</string>
+    <string name="language">Dil</string>
 </resources>

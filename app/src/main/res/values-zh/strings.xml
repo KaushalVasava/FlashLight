@@ -75,4 +75,7 @@
     <string name="restart">重启</string>
     <string name="new_app_is_ready">新应用准备就绪</string>
     <string name="user_cancelled_the_operation">用户取消了操作</string>
+    <string name="instagram">Instagram</string>
+    <string name="follow_me_on_instagram">在 Instagram 上关注我</string>
+    <string name="language">语言</string>
 </resources>

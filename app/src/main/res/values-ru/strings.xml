@@ -30,11 +30,11 @@
     <string name="phone_call_denied_toast">Отказано в доступе к телефону</string>
     <string name="switch_txt">Переключение подсветки экрана и вспышки</string>
 
-    <string name="contact_support">Обратиться в службу поддержки</string>
+    <string name="contact_support">Свяжитесь со службой поддержки или запросите функцию</string>
     <string name="rating">Оцените приложение</string>
     <string name="playback_speed" translatable="false">%.2fx</string>
     <string name="tap_gesture">Нажмите 2 раза слева на изображение, чтобы вернуться на 10 секунд назад, и нажмите 2 раза справа на изображение, чтобы перейти на 10 секунд вперед </string>
-    <string name="feedback_text">Отправить отзыв. Если приложение продолжает давать сбой, \'Очистить данные приложения\' или отправить ему электронное письмо</string>
+    <string name="feedback_text">Отправьте отзыв или запросите функции, чтобы мы могли улучшить наше приложение. Если приложение продолжает давать сбой, «Очистите данные приложения» или отправьте ему электронное письмо или напишите мне в Instagram.</string>
     <string name="rating_text">Нравится это приложение? Сообщите нам в Google Play Store, как мы можем сделать его еще лучше</string>
     <string name="more_app_text">Проверьте другие приложения</string>
     <string name="share_text">Поделитесь приложением с друзьями и семьей</string>
@@ -75,4 +75,7 @@
     <string name="restart">Перезапустить</string>
     <string name="new_app_is_ready">Новое приложение готово</string>
     <string name="user_cancelled_the_operation">Пользователь отменил операцию</string>
+    <string name="instagram">Инстаграм</string>
+    <string name="follow_me_on_instagram">Следуйте за мной в Instagram</string>
+    <string name="language">Язык</string>
 </resources>

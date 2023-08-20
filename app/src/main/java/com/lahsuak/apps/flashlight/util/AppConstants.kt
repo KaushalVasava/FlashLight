@@ -2,6 +2,7 @@ package com.lahsuak.apps.flashlight.util
 
 object AppConstants {
     const val WEBSITE = "https://zaap.bio/KaushalVasava"
+    const val INSTAGRAM_URL = "https://www.instagram.com/kaushalvasava_apps/"
 
     const val SETTING_DATA = "SETTING_DATA"
     const val HAPTIC_FEEDBACK = "haptic_feedback"
@@ -37,5 +38,12 @@ object AppConstants {
 
     const val PHONE_NUMBER_PATTERN =
         "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$"
+
+    const val MAX_COUNTER_FOR_MORE_APPS = 5
+    const val MORE_APPS_DELAY = 10000L
+
+    const val LANGUAGE_SHARED_PREFERENCE = "LANGUAGE"
+    const val LANGUAGE_SHARED_PREFERENCE_KEY = "selectedLang"
+    const val LANGUAGE_DEFAULT_VALUE = "-1"
 }
 

@@ -10,4 +10,6 @@ object SharedPrefConstants {
     const val APP_VERSION_KEY = "app_version"
     const val RATING_KEY = "rating"
     const val DEVELOPER = "developer"
+    const val INSTAGRAM_APP = "instagram_app"
+    const val LANGUAGE_KEY = "language"
 }

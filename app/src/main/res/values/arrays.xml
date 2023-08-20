@@ -9,4 +9,36 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+
+    <string-array name="language_entries">
+        <item>System Default</item>
+        <item>Bengali</item>
+        <item>Chinese</item>
+        <item>English</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Hindi</item>
+        <item>Japanese</item>
+        <item>Portuguese</item>
+        <item>Russian</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>-1</item>
+        <item>bn</item>
+        <item>zh</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>hi</item>
+        <item>ja</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>es</item>
+        <item>tr</item>
+    </string-array>
+
 </resources>

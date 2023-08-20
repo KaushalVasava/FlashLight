@@ -75,4 +75,7 @@
     <string name="restart">পুনরায় চালু করুন</string>
     <string name="new_app_is_ready">নতুন অ্যাপ প্রস্তুত</string>
     <string name="user_cancelled_the_operation">ব্যবহারকারী অপারেশন বাতিল করেছে</string>
+    <string name = "instagram">ইনস্টাগ্রাম</string>
+    <string name = "follow_me_on_instagram"> আমাকে ইনস্টাগ্রামে অনুসরণ করুন</string>
+    <string name="language">ভাষা</string>
 </resources>

@@ -75,4 +75,7 @@
     <string name="restart">पुनरारंभ करें</string>
     <string name="new_app_is_ready">नया ऐप तैयार है</string>
     <string name="user_cancelled_the_operation">उपयोगकर्ता ने कार्रवाई रद्द कर दी</string>
+    <string name="instagram">इंस्टाग्राम</string>
+    <string name="follow_me_on_instagram">इंस्टाग्राम पर मुझे फ़ॉलो करें</string>
+    <string name="language">भाषा</string>
 </resources>

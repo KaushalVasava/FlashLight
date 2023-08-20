@@ -33,11 +33,11 @@
     <string name="play_store_share" translatable="false">https://play.google.com/store/apps/details?id=</string>
     <string name="switch_txt">Switch for screen light and flash light</string>
 
-    <string name="contact_support">Contact Support</string>
-    <string name="rating">Rate the app</string>
+    <string name="contact_support">Contact Support or Feature Request</string>
+    <string name="rating">Rate Us to show your love</string>
     <string name="playback_speed" translatable="false">%.2fx</string>
     <string name="tap_gesture">Tapping on the left 2 times on the image to go behind to 10 seconds and tapping on the right 2 times on the image to go forward to 10 seconds </string>
-    <string name="feedback_text">Send feedback, If the app keeps crashing \'Clear app data\' or send it an Email</string>
+    <string name="feedback_text">Send feedback or request features so we can improve our app. If the app keeps crashing \'Clear app data\' or send it an Email or message me on the Instagram</string>
     <string name="rating_text">Love this app? Let us know in Google Play Store how we can make it even better</string>
     <string name="more_app_text">Check out other apps</string>
     <string name="share_text">Share the app with your friends and family</string>
@@ -79,4 +79,7 @@
     <string name="new_app_is_ready">New app is ready</string>
     <string name="user_cancelled_the_operation">User cancelled the operation</string>
     <string name="made_in_india" translatable="false">Made with ❤️ in India \uD83C\uDDEE\uD83C\uDDF3</string>
+    <string name="instagram">Instagram</string>
+    <string name="follow_me_on_instagram">Follow me on the Instagram</string>
+    <string name="language">Language</string>
 </resources>

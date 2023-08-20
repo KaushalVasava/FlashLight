@@ -75,4 +75,7 @@
     <string name="restart">Neustart</string>
     <string name="new_app_is_ready">Neue App ist fertig</string>
     <string name="user_cancelled_the_operation">Benutzer hat den Vorgang abgebrochen</string>
+    <string name="instagram">Instagram</string>
+    <string name="follow_me_on_instagram">Folge mir auf Instagram</string>
+    <string name="language">Sprache</string>
 </resources>

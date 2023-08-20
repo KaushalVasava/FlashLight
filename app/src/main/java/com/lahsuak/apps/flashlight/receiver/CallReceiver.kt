@@ -9,14 +9,15 @@ import android.hardware.camera2.CameraManager
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.lahsuak.apps.flashlight.R
 import com.lahsuak.apps.flashlight.service.CallService
 import com.lahsuak.apps.flashlight.util.AppConstants
-import com.lahsuak.apps.flashlight.util.FlashLightApp.Companion.flashlightExist
 import com.lahsuak.apps.flashlight.util.AppConstants.CALL_NOTIFICATION
 import com.lahsuak.apps.flashlight.util.AppConstants.SHOW_NOTIFICATION
+import com.lahsuak.apps.flashlight.util.FlashLightApp.Companion.flashlightExist
 import com.lahsuak.apps.flashlight.util.logError
 import com.lahsuak.apps.flashlight.util.toast
 
@@ -46,22 +47,20 @@ class CallReceiver : BroadcastReceiver() {
         val callNot = pref.getBoolean(CALL_NOTIFICATION, true)
         val appNot = pref.getBoolean(SHOW_NOTIFICATION, true)
 
+        val extraState = intent.getStringExtra(TelephonyManager.EXTRA_STATE)
         val isAllow = callNot && appNot
-        if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                .equals(TelephonyManager.EXTRA_STATE_RINGING)
+        if (extraState.equals(TelephonyManager.EXTRA_STATE_RINGING)
         ) {
             if (isAllow)
                 switchingFlash(context)
-        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                .equals(TelephonyManager.EXTRA_STATE_OFFHOOK)
+        } else if (extraState.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)
         ) {
             if (isAllow) {
                 turnFlash(context, false)
                 isPause = true
                 switchingFlash(context)
             }
-        } else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                .equals(TelephonyManager.EXTRA_STATE_IDLE)
+        } else if (extraState.equals(TelephonyManager.EXTRA_STATE_IDLE)
         ) {
             if (isAllow) {
                 turnFlash(context, false)
@@ -97,9 +96,13 @@ class CallReceiver : BroadcastReceiver() {
             val cameraManager =
                 context.getSystemService(AppCompatActivity.CAMERA_SERVICE) as CameraManager
             try {
-                val cameraId = cameraManager.cameraIdList[0]
-                cameraManager.setTorchMode(cameraId, isCheck)
+                if (cameraManager.cameraIdList.isNotEmpty()) {
+                    val cameraId = cameraManager.cameraIdList[0]
+                    cameraManager.setTorchMode(cameraId, isCheck)
+                }
             } catch (e: CameraAccessException) {
+                e.logError()
+            } catch (e: Exception) {
                 e.logError()
             }
         }
