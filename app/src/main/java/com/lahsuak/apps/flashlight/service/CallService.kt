@@ -54,7 +54,10 @@ class CallService : Service() {
         try {
             val prefSetting = PreferenceManager.getDefaultSharedPreferences(baseContext)
             val checkStartUpFlash = prefSetting.getBoolean(FLASH_ON_START, false)
-            val actionName = intent?.getBooleanExtra(AppConstants.ACTION_NAME, checkStartUpFlash || isTorchOn)
+            val actionName = intent?.getBooleanExtra(
+                AppConstants.ACTION_NAME,
+                checkStartUpFlash || isTorchOn
+            )
             isTorchOn = actionName != false
             onLightClick(isTorchOn)
         } catch (e: NullPointerException) {
@@ -65,9 +68,7 @@ class CallService : Service() {
     }
 
     private fun onLightClick(isPlay: Boolean) {
-        if (lightListener != null) {
-            lightListener!!.onTorchClick(isPlay)
-        }
+        lightListener?.onTorchClick(isPlay)
     }
 
     fun torchSwitch(turnON: Boolean, view1: ImageView, view2: ImageButton) {
@@ -101,8 +102,14 @@ class CallService : Service() {
                 }
             } catch (e: CameraAccessException) {
                 e.logError()
+                toast {
+                    baseContext.getString(R.string.camera_denied_toast)
+                }
             } catch (e: IllegalArgumentException) {
-                e.logError()
+//                e.logError()
+                toast {
+                    baseContext.getString(R.string.device_doesn_t_support_flash_light)
+                }
             }
         }
         baseContext.getSharedPreferences(SETTING_DATA, MODE_PRIVATE).edit().apply {
@@ -113,7 +120,7 @@ class CallService : Service() {
     }
 
     fun showNotification(
-        isPlay: Boolean
+        isPlay: Boolean,
     ) {
         val pendingIntentFlag =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

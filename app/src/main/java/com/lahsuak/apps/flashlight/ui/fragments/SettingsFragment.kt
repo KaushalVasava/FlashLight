@@ -12,7 +12,7 @@ import com.lahsuak.apps.flashlight.util.AppConstants
 import com.lahsuak.apps.flashlight.util.AppConstants.SETTING_DATA
 import com.lahsuak.apps.flashlight.util.AppUtil
 import com.lahsuak.apps.flashlight.util.AppUtil.appRating
-import com.lahsuak.apps.flashlight.util.AppUtil.moreApp
+import com.lahsuak.apps.flashlight.util.AppUtil.openMoreApp
 import com.lahsuak.apps.flashlight.util.AppUtil.sendFeedbackMail
 import com.lahsuak.apps.flashlight.util.AppUtil.shareApp
 import com.lahsuak.apps.flashlight.util.SharedPrefConstants.APP_VERSION_KEY
@@ -80,7 +80,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
         prefMoreApp?.setOnPreferenceClickListener {
-            moreApp(requireContext())
+            openMoreApp(requireContext())
             true
         }
         prefRating?.setOnPreferenceClickListener {

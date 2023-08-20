@@ -9,6 +9,7 @@ import android.os.Build
 class FlashLightApp : Application() {
 
     companion object {
+        var counter = 0
         var isTorchOn = false
         var flashlightExist = true
         lateinit var appContext: Context

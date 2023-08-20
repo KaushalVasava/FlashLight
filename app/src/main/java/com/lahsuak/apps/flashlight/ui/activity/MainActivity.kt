@@ -3,8 +3,8 @@ package com.lahsuak.apps.flashlight.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -35,10 +35,9 @@ class MainActivity : AppCompatActivity() {
                 binding.root,
                 getString(R.string.new_app_is_ready),
                 Snackbar.LENGTH_INDEFINITE
-            )
-                .setAction(getString(R.string.restart)) {
-                    appUpdateManager?.completeUpdate()
-                }.show()
+            ).setAction(getString(R.string.restart)) {
+                appUpdateManager?.completeUpdate()
+            }.show()
         }
     }
 
