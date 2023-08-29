@@ -40,19 +40,26 @@ And control the brightness level from 0 to 10 range.
 
 # Checkout this app on the Playstore!!
 
-[![playstore_logo (1)](https://user-images.githubusercontent.com/49050597/144359511-fd4cc136-3d9f-45d5-8598-506a45f8d170.png)](https://play.google.com/store/apps/details?id=com.lahsuak.apps.flashlight)
+[![playstore_icon (1) (1)](https://github.com/KaushalVasava/FlashLight/assets/49050597/9dcbdb25-025d-4876-b878-a775ac4fb965)](https://play.google.com/store/apps/details?id=com.lahsuak.apps.flashlight)
 
 
-![image3](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/29172b51-e457-4b17-94c3-f013e16e18a3)
-![Add a heading (2) (2)](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/a13f8a0e-ff4d-4464-a8af-2f0c6a926ae5)
-![image6 (1)](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/0813db50-8031-4f18-b94b-c35c1e4c7bdd)
-![image4](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/43a14088-5b6a-4446-80cb-0f1b6a6612f5)
-![image5](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/0f761e14-7397-4869-b75b-07d50139ebf6)
-![image2](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/fbd0c974-928f-4e4f-9b62-9743771ea51b)
-![image1](https://github.com/KaushalVasava/FlashLight_Plus/assets/49050597/87672311-f596-4f38-9e79-bf46941921f2)
+![1](https://github.com/KaushalVasava/FlashLight/assets/49050597/5becea01-7719-4df5-8708-35d0f29c1226)
 
+![2](https://github.com/KaushalVasava/FlashLight/assets/49050597/8e2b24f6-b313-442c-a6a2-6f243291b831)
+
+# Contribution
+You can contribute this project. Just Solve issue or update code and raise PR. I'll do code review and merge your changes into main branch. See Commit message guidelines https://initialcommit.com/blog/git-commit-messages-best-practices
+
+# Licence
+Copyright 2023 Kaushal Vasava
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+# Author 
+Kaushal Vasava.
 
 Follow me on Github, LinkedIn, Twitter for more interesting android topics and apps. (Link in bio)
-
-Thank you,
-Kaushal Vasava.
