@@ -40,7 +40,8 @@ And control the brightness level from 0 to 10 range.
 
 # Checkout this app on the Playstore!!
 
-[![playstore_icon (1) (1)](https://github.com/KaushalVasava/FlashLight/assets/49050597/9dcbdb25-025d-4876-b878-a775ac4fb965)](https://play.google.com/store/apps/details?id=com.lahsuak.apps.flashlight)
+[![playstore_logo (1)](https://user-images.githubusercontent.com/49050597/144359511-fd4cc136-3d9f-45d5-8598-506a45f8d170.png)](
+https://play.google.com/store/apps/details?id=com.lahsuak.apps.flashlight)
 
 
 ![1](https://github.com/KaushalVasava/FlashLight/assets/49050597/5becea01-7719-4df5-8708-35d0f29c1226)
