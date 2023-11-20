@@ -83,13 +83,13 @@ class CallService : Service() {
             FlashLightApp.flashlightExist = true
             try {
                 if (cameraManager.cameraIdList.isNotEmpty()) {
-                    val cameraId = cameraManager.cameraIdList[0]
-                    cameraManager.setTorchMode(cameraId, turnON)
-                    if (cameraManager.getCameraCharacteristics(cameraManager.cameraIdList[1]).get(
-                            CameraCharacteristics.FLASH_INFO_AVAILABLE
-                        ) == true
-                    ) {
-                        cameraManager.setTorchMode(cameraManager.cameraIdList[1], turnON)
+                    cameraManager.cameraIdList.forEachIndexed { index, _ ->
+                        if (cameraManager.getCameraCharacteristics(cameraManager.cameraIdList[index]).get(
+                                CameraCharacteristics.FLASH_INFO_AVAILABLE
+                            ) == true
+                        ) {
+                            cameraManager.setTorchMode(cameraManager.cameraIdList[index], turnON)
+                        }
                     }
                     // state = turnON
                     if (turnON) {

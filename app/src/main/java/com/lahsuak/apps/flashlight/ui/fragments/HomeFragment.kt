@@ -18,7 +18,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,9 +55,9 @@ import com.lahsuak.apps.flashlight.util.AppConstants.SHOW_NOTIFICATION
 import com.lahsuak.apps.flashlight.util.AppConstants.TEL
 import com.lahsuak.apps.flashlight.util.AppConstants.TOUCH_SOUND
 import com.lahsuak.apps.flashlight.util.AppUtil
-import com.lahsuak.apps.flashlight.util.AppUtil.shakeThreshold
 import com.lahsuak.apps.flashlight.util.AppUtil.hapticFeedback
 import com.lahsuak.apps.flashlight.util.AppUtil.playSound
+import com.lahsuak.apps.flashlight.util.AppUtil.shakeThreshold
 import com.lahsuak.apps.flashlight.util.FlashLightApp
 import com.lahsuak.apps.flashlight.util.FlashLightApp.Companion.flashlightExist
 import com.lahsuak.apps.flashlight.util.PermissionUtil
